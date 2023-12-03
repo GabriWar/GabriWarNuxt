@@ -1,0 +1,11 @@
+:root{
+    --text: #f0eded;
+    --background: #000000;
+    --primary: #0015ff;
+    --secondary: #4e5a60;
+    --accent: #8c8299;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: monospace;
+    overflow: hidden;
+}

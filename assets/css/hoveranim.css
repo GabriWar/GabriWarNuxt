@@ -1,0 +1,365 @@
+
+
+.txtanim {
+    --link-color: rgb(165, 165, 165);
+    --hovered-link-color: rgba(165, 165, 165, 0.8);
+    --link-color-web: rgba(12, 122, 122, 0.6);
+    --hovered-link-color-web: rgb(12, 122, 122);
+    --link-color-linux: rgba(0, 64, 255, 0.6);
+    --hovered-link-color-linux: rgb(0, 64, 255);
+    --hovered-link-color-js: rgb(0, 64, 255);
+    --link-color-edu: rgba(95, 84, 0, 0.6);
+    --hovered-link-color-edu: rgb(95, 84, 0);
+    --link-color-rust: rgba(229, 55, 23, 0.6);
+    --hovered-link-color-rust: rgb(229, 55, 23);
+    --link-color-react: rgba(97, 219, 251, 0.6);
+    --hovered-link-color-react: rgb(97, 219, 251);
+    --color-vue: rgba(0, 232, 128, 0.6);
+    --color-vue-hover: rgb(0, 232, 128);
+    --link-color-py: rgba(0, 13, 255, 0.6);
+    --hovered-link-color-py: rgb(0, 13, 255);
+    --link-color-cpp: rgba(0, 89, 157, 0.6);
+    --hovered-link-color-cpp: rgb(0, 89, 157);
+    --link-color-js: rgba(240, 220, 78, 0.6);
+    --hovered-link-color-js: rgb(240, 220, 78);
+    --link-color-projects: rgba(0, 200, 0, 0.6);
+    --hovered-link-color-projects: rgb(0, 200, 0);
+    --link-color: rgb(165, 165, 165);
+}
+
+a {
+    background-color: transparent;
+    color: #ffffff;
+    transition: color 0.2s ease 0s;
+    text-decoration: none;
+}
+
+.link-color {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color) calc(50% - 9px),
+            var(--link-color) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color) calc(50% - 9px),
+            var(--hovered-link-color) 100%);
+    background-position: 0 100%;
+}
+
+.link-static {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color) calc(50% - 9px),
+            var(--hovered-link-color) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-linux {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color-linux) calc(50% - 9px),
+            var(--link-color-linux) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-linux:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-linux) calc(50% - 9px),
+            var(--hovered-link-color-linux) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-linux {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-linux) calc(50% - 9px),
+            var(--hovered-link-color-linux) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-web {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color-web) calc(50% - 9px),
+            var(--link-color-web) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-web:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-web) calc(50% - 9px),
+            var(--hovered-link-color-web) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-web {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-web) calc(50% - 9px),
+            var(--hovered-link-color-web) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-js {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color-js) calc(50% - 9px),
+            var(--link-color-js) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-js:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-js) calc(50% - 9px),
+            var(--hovered-link-color-js) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-js {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-js) calc(50% - 9px),
+            var(--hovered-link-color-js) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-edu {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color-edu) calc(50% - 9px),
+            var(--link-color-edu) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-edu:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-edu) calc(50% - 9px),
+            var(--hovered-link-color-edu) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-edu {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-edu) calc(50% - 9px),
+            var(--hovered-link-color-edu) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-rust {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color-rust) calc(50% - 9px),
+            var(--link-color-rust) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-rust:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-rust) calc(50% - 9px),
+            var(--hovered-link-color-rust) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-rust {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-rust) calc(50% - 9px),
+            var(--hovered-link-color-rust) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-react {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color-react) calc(50% - 9px),
+            var(--link-color-react) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-react:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-react) calc(50% - 9px),
+            var(--hovered-link-color-react) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-react {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-react) calc(50% - 9px),
+            var(--hovered-link-color-react) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-vue {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--color-vue) calc(50% - 9px),
+            var(--color-vue) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-vue:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--color-vue-hover) calc(50% - 9px),
+            var(--color-vue-hover) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-vue {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--color-vue-hover) calc(50% - 9px),
+            var(--color-vue-hover) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-py {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color-py) calc(50% - 9px),
+            var(--link-color-py) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-py:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-py) calc(50% - 9px),
+            var(--hovered-link-color-py) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-py {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-py) calc(50% - 9px),
+            var(--hovered-link-color-py) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-cpp {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color-cpp) calc(50% - 9px),
+            var(--link-color-cpp) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-cpp:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-cpp) calc(50% - 9px),
+            var(--hovered-link-color-cpp) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-cpp {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-cpp) calc(50% - 9px),
+            var(--hovered-link-color-cpp) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
+
+.link-color-projects {
+    padding: 2px 0 1px;
+    cursor: pointer;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--link-color-projects) calc(50% - 9px),
+            var(--link-color-projects) 100%);
+    transition: all 120ms ease-in-out 0s;
+    background-size: 100% 200%;
+    background-position: 0 0;
+    word-break: break-word;
+}
+
+.link-color-projects:hover {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-projects) calc(50% - 9px),
+            var(--hovered-link-color-projects) 100%);
+    background-position: 0 100%;
+}
+
+.link-static-projects {
+    background-image: linear-gradient(transparent 0,
+            transparent calc(50% - 9px),
+            var(--hovered-link-color-projects) calc(50% - 9px),
+            var(--hovered-link-color-projects) 100%);
+    background-position: 0 100%;
+    cursor: default;
+}
