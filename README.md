@@ -1,75 +1,23 @@
-# Nuxt 3 Minimal Starter
+# GabriWar.XYZ
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is my personal portfolio website, GabriWar.XYZ, built using Vue.js and Nuxt.js with Supabase integration. 😎
 
-## Setup
+## Features
 
-Make sure to install the dependencies:
+- Showcase your projects and skills 🚀
+- Many different designs of the same website 🎨
+- Some funny games to play 🎮
+- PT-BR/english 🌍
+- Single page application 📄
+- "kinda" organized :P
+- Some cool CSS and JS 😎
+- Blazing Fast ⚡️
 
-```bash
-# npm
-npm install
+## Technologies Used
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Vue.js
+  ![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
+- Nuxt.js
+  ![Nuxtjs](https://img.shields.io/badge/Nuxt-002E3B?style=for-the-badge&logo=nuxtdotjs&logoColor=#00DC82)
+- Supabase
+  ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
