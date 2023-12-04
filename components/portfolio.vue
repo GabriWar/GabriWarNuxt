@@ -4,7 +4,7 @@
       <div class="bg">
         <div class="hover">
           <div class="txtdiv">
-            <p class="randtxt">{{ randomChars }}</p>
+            <div class="randtxt">{{ randomChars }}</div>
           </div>
         </div>
       </div>
