@@ -105,9 +105,14 @@
 
 <style scoped>
 @import url(assets/css/hoveranim.css);
+.all{
+  height: 90vh;
+  overflow: hidden;
+}
 .resumeEN {
   z-index: 1;
   font-size: clamp(1rem, 1.5vw, 1.5rem);
+  margin-top: 10px;
 }
 .txtcontainer {
   display: grid;
@@ -134,30 +139,23 @@
 }
 .txtdiv {
   position: absolute;
-  width: 105%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
   color: rgb(94, 93, 93);
   word-break: break-all;
+  mask-image: radial-gradient(circle at center, black 10%, transparent 50%);
   -webkit-mask-image: radial-gradient(
     circle at center,
     black 10%,
     transparent 50%
   );
-  -mask-image: radial-gradient(circle at center, black 10%, transparent 50%);
   font-size: 2rem;
-  left: -5%;
 }
 .randtxt {
   position: absolute;
   text-align: center;
-  width: 110%;
-  height: 110%;
+  mask-image: radial-gradient(circle at var(--x) var(--y), black 1%, transparent 50%);
   -webkit-mask-image: radial-gradient(
-    circle at var(--x) var(--y),
-    black 1%,
-    transparent 50%
-  );
-  -mask-image: radial-gradient(
     circle at var(--x) var(--y),
     black 1%,
     transparent 50%
@@ -168,24 +166,25 @@
 }
 @media screen and (max-width: 800px) {
   .txt {
+    mask-image: none;
     -webkit-mask-image: none;
-    -mask-image: none;
   }
   .txtdiv {
+    mask-image: none;
     -webkit-mask-image: none;
-    -mask-image: none;
+    height: 100vh;
   }
   .txtcontainer {
     width: 100%;
-
-
   }
   .randtxt {
     color: rgb(26, 26, 26);
+    height: 100vh;
   }
   .name {
     display: none;
   }
+
 }
 </style>
 

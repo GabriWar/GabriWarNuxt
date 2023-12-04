@@ -17,8 +17,10 @@
 @import url(assets/css/glitchanim.css);
 .navbar {
     position: fixed;
+    z-index: 1;
     bottom: 0;
     width: 100%;
+    left: -5px;
     padding: 6px;
     opacity: 80%;
     backdrop-filter: blur(4px);
@@ -67,5 +69,18 @@
         font-size: 1.5rem;
     }
 }
+@media screen and (max-width: 800px) {
+    .navbar {
+        padding: 0;
+               position: fixed;
+               bottom: 0;
 
+    }
+    .navbar ul {
+        gap: 10px;
+    }
+    .navbar a {
+        font-size: 0.8rem;
+    }
+}
 </style>

@@ -201,7 +201,7 @@ a {
 
 .creditos {
     font-size: 20px;
-    bottom: 0;
+    bottom: 50px;
     right: 0;
     position: absolute;
 }
@@ -214,5 +214,11 @@ a {
 .aviso2 {
     color: grey;
     margin-top: 0px;
+}
+@media screen and (max-width: 800px) {
+    .tablecontainer{
+    width: 90vw;
+    overflow: auto;}
+    
 }
 </style>
