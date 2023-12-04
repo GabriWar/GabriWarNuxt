@@ -4,7 +4,7 @@
       <div class="bg">
         <div class="hover">
           <div class="txtdiv">
-            <div class="randtxt">{{ randomChars }}</div>
+            <p class="randtxt">{{ randomChars }}</p>
           </div>
         </div>
       </div>
@@ -105,9 +105,8 @@
 
 <style scoped>
 @import url(assets/css/hoveranim.css);
-.all {
-  position: absolute;
-  height: 100vh;
+.all{
+  height: 90vh;
   overflow: hidden;
 }
 .resumeEN {
@@ -140,8 +139,8 @@
 }
 .txtdiv {
   position: absolute;
-  width: 100%;
   height: 100%;
+  overflow: hidden;
   color: rgb(94, 93, 93);
   word-break: break-all;
   mask-image: radial-gradient(circle at center, black 10%, transparent 50%);
@@ -155,16 +154,13 @@
 .randtxt {
   position: absolute;
   text-align: center;
-  mask-image: radial-gradient(
-    circle at var(--x) var(--y),
-    black 1%,
-    transparent 50%
-  );
+  mask-image: radial-gradient(circle at var(--x) var(--y), black 1%, transparent 50%);
   -webkit-mask-image: radial-gradient(
     circle at var(--x) var(--y),
     black 1%,
     transparent 50%
   );
+  left: +4.8%;
   top: +2%;
   pointer-events: none;
 }
@@ -188,6 +184,7 @@
   .name {
     display: none;
   }
+
 }
 </style>
 

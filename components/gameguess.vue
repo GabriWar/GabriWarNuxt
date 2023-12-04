@@ -6,14 +6,7 @@
       <p v-if="!gameStarted">Clique no botão para iniciar o jogo</p>
       <button v-if="!gameStarted" @click="startGame">Iniciar Jogo</button>
       <p v-if="gameStarted && !gameOver">adivinhe um numero entre 0 e 100:</p>
-      <input
-        v-model="guess"
-        v-if="gameStarted && !gameOver"
-        type="number"
-        min="1"
-        max="100"
-        @keyup.enter="checkGuess"
-      />
+      <input v-model="guess" v-if="gameStarted && !gameOver" type="number" min="1" max="100" @keyup.enter="checkGuess" />
       <button v-if="gameStarted && !gameOver" @click="checkGuess">enter</button>
       <p v-if="gameOver">voce acertou o numero em {{ attempts }} tentativas.</p>
       <p v-if="!gameOver && higher">o número é menor</p>
@@ -24,13 +17,7 @@
       <p class="aviso1" v-if="gameOver">Pontuacao = tempo*tentativas</p>
     </div>
 
-    <input
-      v-model="playerName"
-      v-if="gameOver"
-      type="text"
-      placeholder="digite seu nome"
-      class="input"
-    />
+    <input v-model="playerName" v-if="gameOver" type="text" placeholder="digite seu nome" class="input" />
     <button v-if="gameOver" @click="sendScore">enviar</button>
     <p class="aviso2" v-if="gameOver">sem caracteres especiais, por favor :)</p>
     <table class="table" v-if="highScores.length > 0">
@@ -58,7 +45,7 @@
     <p v-else>sem pontuacoes</p>
   </div>
   <div class="creditos">
-    <a href="https://github.com/GabriWar"> Criado por: Gabriel Guerra</a>
+    <a href="https://github.com/GabriWar">Gabriel Guerra</a>
   </div>
 </template>
 
@@ -165,14 +152,17 @@ td,
   border-color: white;
   font-size: clamp(20px, 3vw, 32px);
 }
+
 .tablecontainer {
   height: 400px;
   width: 60vw;
   overflow: auto;
 }
+
 .tablecontainer::-webkit-scrollbar {
   width: 5px;
 }
+
 .tablecontainer::-webkit-scrollbar-track {
   background: #000000;
 }
@@ -180,6 +170,7 @@ td,
 .tablecontainer::-webkit-scrollbar-thumb {
   background: #999999;
 }
+
 .table {
   margin: 0 auto;
   height: 400px;
@@ -211,7 +202,7 @@ a {
 
 .creditos {
   font-size: 20px;
-  bottom: 10vh;
+  top: 0;
   right: 0;
   position: absolute;
 }
@@ -225,6 +216,7 @@ a {
   color: grey;
   margin-top: 0px;
 }
+
 @media screen and (max-width: 800px) {
   .tablecontainer {
     width: 90vw;
