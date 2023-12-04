@@ -1,13 +1,11 @@
 <script setup>
-import VanillaTilt from "vanilla-tilt";
+import VanillaTilt from 'vanilla-tilt';
 </script>
 
 <template>
-      <gradient></gradient>
+  <gradient></gradient>
   <div class="wrap">
-    <div class="bg">
-  
-    </div>
+    <div class="bg"></div>
     <div class="title" gyroscope data-tilt>
       <h1>PROJECTS</h1>
     </div>
@@ -70,5 +68,5 @@ import VanillaTilt from "vanilla-tilt";
 </template>
 
 <style scoped>
-@import url("~/assets/css/glass.css");
+@import url('~/assets/css/glass.css');
 </style>

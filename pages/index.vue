@@ -1,5 +1,3 @@
 <template>
-    <portfolio></portfolio>
+  <portfolio></portfolio>
 </template>
-
-

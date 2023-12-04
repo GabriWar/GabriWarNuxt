@@ -44,14 +44,14 @@
   backface-visibility: hidden; /* Prevents flickering and uses gpu*/
   width: 100vw;
   height: 100vh;
-  position: relative;
+  position: absolute;
   overflow: hidden;
   background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
   top: 0;
   left: 0;
   --color-bg1: rgb(37, 1, 75);
   --color-bg2: rgb(0, 5, 29);
-  --color1: 15, 115, 255,;
+  --color1: 15, 115, 255;
   --color2: 220, 75, 255;
   --color3: 100, 220, 255;
   --color4: 200, 50, 50;

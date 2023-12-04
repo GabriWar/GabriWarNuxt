@@ -1,5 +1,5 @@
 <template>
-    <div>
-        <glass></glass>
-    </div>
+  <div>
+    <glass></glass>
+  </div>
 </template>

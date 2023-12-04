@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="gradient-bg"
-  >
+  <div class="gradient-bg">
     <svg xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter id="goo">
@@ -44,5 +42,5 @@ export default {
 </script>
 
 <style scoped>
-@import url("~/assets/css/gradient.css");
+@import url('~/assets/css/gradient.css');
 </style>
