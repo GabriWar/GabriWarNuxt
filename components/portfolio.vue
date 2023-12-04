@@ -112,7 +112,7 @@
 }
 .resumeEN {
   z-index: 1;
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  font-size: clamp(1.2rem, 1.5vw, 1.4rem);
   margin-top: 10px;
 }
 .txtcontainer {
@@ -130,7 +130,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: clamp(40px, 8vw, 85px);
+  font-size: clamp(50px, 8vw, 75px);
   cursor: pointer;
 }
 .bgcontainer {
