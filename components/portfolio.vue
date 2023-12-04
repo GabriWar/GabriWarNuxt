@@ -158,16 +158,15 @@
 }
 .randtxt {
   position: absolute;
-  text-align: center;
   mask-image: radial-gradient(circle at var(--x) var(--y), black 1%, transparent 50%);
   -webkit-mask-image: radial-gradient(
     circle at var(--x) var(--y),
     black 1%,
     transparent 50%
   );
-  left: +4.8%;
-  top: +2%;
   pointer-events: none;
+  margin: 0%;
+  padding: 0%;
 }
 @media screen and (max-width: 800px) {
   .txt {
