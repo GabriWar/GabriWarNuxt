@@ -106,7 +106,8 @@
 <style scoped>
 @import url(assets/css/hoveranim.css);
 .all{
-  height: 90vh;
+  position: absolute;
+  height: 100vh;
   overflow: hidden;
 }
 .resumeEN {
@@ -143,12 +144,12 @@
   height: 100%;
   color: rgb(94, 93, 93);
   word-break: break-all;
-  mask-image: radial-gradient(circle at center, black 10%, transparent 50%);
+   mask-image: radial-gradient(circle at center, black 10%, transparent 50%);
   -webkit-mask-image: radial-gradient(
     circle at center,
     black 10%,
     transparent 50%
-  );
+  ); 
   font-size: 2rem;
 }
 .randtxt {
@@ -160,7 +161,6 @@
     black 1%,
     transparent 50%
   );
-  left: +4.8%;
   top: +2%;
   pointer-events: none;
 }

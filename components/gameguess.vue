@@ -143,13 +143,12 @@ thead,
 tbody,
 tr,
 th,
-td,.bg {
+td,
+.bg {
     background-color: #000;
     color: #fff;
     border-color: white;
     font-size: clamp(20px, 3vw, 32px);
-    height: 120%;
-    
 }
 .tablecontainer{
     height: 400px;

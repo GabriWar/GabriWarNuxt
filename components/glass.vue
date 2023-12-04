@@ -3,9 +3,10 @@ import VanillaTilt from "vanilla-tilt";
 </script>
 
 <template>
-  <div class="wrap">
-    <div class="bg">
       <gradient></gradient>
+  <!-- <div class="wrap">
+    <div class="bg">
+  
     </div>
     <div class="title" gyroscope data-tilt>
       <h1>PROJECTS</h1>
@@ -65,7 +66,7 @@ import VanillaTilt from "vanilla-tilt";
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style scoped>
