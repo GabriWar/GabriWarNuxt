@@ -4,7 +4,7 @@ import VanillaTilt from "vanilla-tilt";
 
 <template>
       <gradient></gradient>
-  <!-- <div class="wrap">
+  <div class="wrap">
     <div class="bg">
   
     </div>
@@ -66,7 +66,7 @@ import VanillaTilt from "vanilla-tilt";
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <style scoped>
