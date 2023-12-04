@@ -25,14 +25,12 @@
     --link-color-projects: rgba(0, 200, 0, 0.6);
     --hovered-link-color-projects: rgb(0, 200, 0);
     --link-color: rgb(165, 165, 165);
-}
-
-a {
     background-color: transparent;
     color: #ffffff;
     transition: color 0.2s ease 0s;
     text-decoration: none;
 }
+
 
 .link-color {
     padding: 2px 0 1px;
