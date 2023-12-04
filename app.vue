@@ -1,4 +1,6 @@
 <template>
+  <title>GabriWar.XYZ</title>
+  
   <NuxtPage />
   <navbar></navbar>
 </template>
