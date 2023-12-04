@@ -201,7 +201,7 @@ a {
 
 .creditos {
     font-size: 20px;
-    bottom: 50px;
+    bottom: 10vh;
     right: 0;
     position: absolute;
 }
