@@ -115,6 +115,11 @@ async function sendScore() {
     return;
   }
 
+  if (playerName.value.length > 15) {
+    console.error('nome muito longo');
+    return;
+  }
+
   const { error } = await client
 
     .from('scores')
