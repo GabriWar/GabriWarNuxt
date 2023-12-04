@@ -155,12 +155,12 @@ td,
   background-color: #000;
   color: #fff;
   border-color: white;
-  font-size: clamp(20px, 3vw, 32px);
+  font-size: clamp(1rem, 3vw, 2rem);
 }
 
 .tablecontainer {
   height: 400px;
-  width: 60vw;
+  width: fit-content;
   overflow: auto;
 }
 
@@ -179,7 +179,7 @@ td,
 .table {
   margin: 0 auto;
   height: 400px;
-  width: 60vw;
+  width: fit-content;
   overflow: auto;
   border-collapse: collapse;
   border: 1px solid white;
