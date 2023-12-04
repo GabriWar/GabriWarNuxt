@@ -105,6 +105,7 @@
 
 <style scoped>
 @import url(assets/css/hoveranim.css);
+
 .all{
   height: 90vh;
   overflow: hidden;
@@ -139,6 +140,7 @@
 }
 .txtdiv {
   position: absolute;
+  width: 100%;
   height: 100%;
   overflow: hidden;
   color: rgb(94, 93, 93);
@@ -149,6 +151,9 @@
     black 10%,
     transparent 50%
   );
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 2rem;
 }
 .randtxt {
