@@ -6,7 +6,14 @@
       <p v-if="!gameStarted">Clique no botão para iniciar o jogo</p>
       <button v-if="!gameStarted" @click="startGame">Iniciar Jogo</button>
       <p v-if="gameStarted && !gameOver">adivinhe um numero entre 0 e 100:</p>
-      <input v-model="guess" v-if="gameStarted && !gameOver" type="number" min="1" max="100" @keyup.enter="checkGuess" />
+      <input
+        v-model="guess"
+        v-if="gameStarted && !gameOver"
+        type="number"
+        min="1"
+        max="100"
+        @keyup.enter="checkGuess"
+      />
       <button v-if="gameStarted && !gameOver" @click="checkGuess">enter</button>
       <p v-if="gameOver">voce acertou o numero em {{ attempts }} tentativas.</p>
       <p v-if="!gameOver && higher">o número é menor</p>
@@ -17,7 +24,13 @@
       <p class="aviso1" v-if="gameOver">Pontuacao = tempo*tentativas</p>
     </div>
 
-    <input v-model="playerName" v-if="gameOver" type="text" placeholder="digite seu nome" class="input" />
+    <input
+      v-model="playerName"
+      v-if="gameOver"
+      type="text"
+      placeholder="digite seu nome"
+      class="input"
+    />
     <button v-if="gameOver" @click="sendScore">enviar</button>
     <p class="aviso2" v-if="gameOver">sem caracteres especiais, por favor :)</p>
     <table class="table" v-if="highScores.length > 0">
@@ -120,17 +133,14 @@ async function sendScore() {
     return;
   }
 
-  const { error } = await client
-
-    .from('scores')
-    .insert([
-      {
-        names: playerName.value,
-        scores: milliseconds.value * attempts.value,
-        time: milliseconds.value,
-        tentativas: attempts.value,
-      },
-    ]);
+  const { error } = await client.from('scores').insert([
+    {
+      names: playerName.value,
+      scores: milliseconds.value * attempts.value,
+      time: milliseconds.value,
+      tentativas: attempts.value,
+    },
+  ]);
   if (error) {
     console.error(error);
   } else {
@@ -142,90 +152,5 @@ async function sendScore() {
 </script>
 
 <style scoped>
-html,
-body,
-input,
-button,
-thead,
-tbody,
-tr,
-th,
-td,
-.bg {
-  background-color: #000;
-  color: #fff;
-  border-color: white;
-  font-size: clamp(1rem, 3vw, 2rem);
-}
-
-.tablecontainer {
-  height: 400px;
-  width: fit-content;
-  overflow: auto;
-}
-
-.tablecontainer::-webkit-scrollbar {
-  width: 5px;
-}
-
-.tablecontainer::-webkit-scrollbar-track {
-  background: #000000;
-}
-
-.tablecontainer::-webkit-scrollbar-thumb {
-  background: #999999;
-}
-
-.table {
-  margin: 0 auto;
-  height: 400px;
-  width: fit-content;
-  overflow: auto;
-  border-collapse: collapse;
-  border: 1px solid white;
-}
-
-h1 {
-  text-align: center;
-}
-
-th {
-  text-align: center;
-  padding-left: 1vw;
-  padding-right: 1vw;
-}
-
-td {
-  text-align: center;
-  padding-left: 1vw;
-  padding-right: 1vw;
-}
-
-a {
-  color: #fff;
-}
-
-.creditos {
-  font-size: 20px;
-  top: 0;
-  right: 0;
-  position: absolute;
-}
-
-.aviso1 {
-  color: grey;
-  margin-top: -5px;
-}
-
-.aviso2 {
-  color: grey;
-  margin-top: 0px;
-}
-
-@media screen and (max-width: 800px) {
-  .tablecontainer {
-    width: 90vw;
-    overflow: auto;
-  }
-}
+@import url(assets/css/gameguess.css);
 </style>

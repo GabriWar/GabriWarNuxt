@@ -1,0 +1,84 @@
+input,
+button,
+thead,
+tbody,
+tr,
+th,
+td,
+.bg {
+  background-color: #000;
+  color: #fff;
+  border-color: white;
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+.tablecontainer {
+  height: 400px;
+  width: fit-content;
+  overflow: auto;
+}
+
+.tablecontainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.tablecontainer::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+.tablecontainer::-webkit-scrollbar-thumb {
+  background: #999999;
+}
+
+.table {
+  margin: 0 auto;
+  height: 400px;
+  width: fit-content;
+  overflow: auto;
+  border-collapse: collapse;
+  border: 1px solid white;
+}
+
+h1 {
+  text-align: center;
+}
+
+th {
+  text-align: center;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+td {
+  text-align: center;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+a {
+  color: #fff;
+}
+
+.creditos {
+  font-size: 20px;
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+.aviso1 {
+  color: grey;
+  margin-top: -5px;
+}
+
+.aviso2 {
+  color: grey;
+  margin-top: 0px;
+}
+
+@media screen and (max-width: 800px) {
+  .tablecontainer {
+    width: 90vw;
+    overflow: auto;
+  }
+}

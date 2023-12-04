@@ -112,108 +112,6 @@
   </div>
 </template>
 
-<style scoped>
-@import url(assets/css/hoveranim.css);
-
-.all {
-  height: 90vh;
-  overflow: hidden;
-}
-
-.resumeEN {
-  z-index: 1;
-  font-size: clamp(1.2rem, 1.5vw, 1.4rem);
-  margin-top: 10px;
-}
-
-.txtcontainer {
-  display: grid;
-  grid-template-columns: 1fr;
-  font-size: 1.5rem;
-  width: 45%;
-  padding-top: 48px;
-}
-
-.name {
-  color: white;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: clamp(50px, 8vw, 75px);
-  cursor: pointer;
-}
-
-.bgcontainer {
-  z-index: -1;
-  margin-top: -4rem;
-  overflow: visible;
-}
-
-.txtdiv {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  color: rgb(94, 93, 93);
-  word-break: break-all;
-  mask-image: radial-gradient(circle at center, black 10%, transparent 50%);
-  -webkit-mask-image: radial-gradient(
-    circle at center,
-    black 10%,
-    transparent 50%
-  );
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
-}
-
-.randtxt {
-  position: absolute;
-  mask-image: radial-gradient(
-    circle at var(--x) var(--y),
-    black 1%,
-    transparent 50%
-  );
-  -webkit-mask-image: radial-gradient(
-    circle at var(--x) var(--y),
-    black 1%,
-    transparent 50%
-  );
-  pointer-events: none;
-  margin: 0%;
-  padding: 0%;
-}
-
-@media screen and (max-width: 800px) {
-  .txt {
-    mask-image: none;
-    -webkit-mask-image: none;
-  }
-
-  .txtdiv {
-    mask-image: none;
-    -webkit-mask-image: none;
-    height: 100vh;
-  }
-
-  .txtcontainer {
-    width: 100%;
-  }
-
-  .randtxt {
-    color: rgb(26, 26, 26);
-    height: 100vh;
-  }
-
-  .name {
-    display: none;
-  }
-}
-</style>
-
 <script setup>
 import genRandom from '~/utils/genrandom.js';
 import animaText from '~/utils/animatext.js';
@@ -233,3 +131,7 @@ const handleMouseMove = (event) => {
   document.documentElement.style.setProperty('--y', `${mouseY.value}px`);
 };
 </script>
+
+<style scoped>
+@import url(assets/css/portfolio.css);
+</style>

@@ -68,5 +68,5 @@ import VanillaTilt from 'vanilla-tilt';
 </template>
 
 <style scoped>
-@import url('~/assets/css/glass.css');
+@import url(assets/css/glass.css);
 </style>

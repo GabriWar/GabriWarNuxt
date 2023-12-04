@@ -1,0 +1,63 @@
+.name {
+  color: white;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: clamp(40px, 8vw, 85px);
+  cursor: pointer;
+}
+
+.bgcontainer {
+  margin-top: -4rem;
+  overflow: visible;
+}
+
+.txtdiv {
+  position: absolute;
+  width: 105%;
+  height: 110%;
+  color: rgb(94, 93, 93);
+  word-break: break-all;
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 10%,
+    transparent 50%
+  );
+  -mask-image: radial-gradient(circle at center, black 10%, transparent 50%);
+  font-size: 2rem;
+  left: -5%;
+}
+
+.txt {
+  position: absolute;
+  text-align: center;
+  width: 110%;
+  height: 110%;
+  -webkit-mask-image: radial-gradient(
+    circle at var(--x) var(--y),
+    black 1%,
+    transparent 50%
+  );
+  -mask-image: radial-gradient(
+    circle at var(--x) var(--y),
+    black 1%,
+    transparent 50%
+  );
+  left: +4.8%;
+  top: +2%;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  .txt {
+    -webkit-mask-image: none;
+    -mask-image: none;
+  }
+
+  .txtdiv {
+    -webkit-mask-image: none;
+    -mask-image: none;
+  }
+}
