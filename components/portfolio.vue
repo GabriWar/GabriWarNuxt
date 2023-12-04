@@ -38,21 +38,48 @@
               Proficient in both front-end and back-end technologies,
               experienced with HTML, CSS, JavaScript (<a
                 class="txtanim link-color-react"
+                href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=javascript&sort="
                 >React/Next</a
-              >, <a class="txtanim link-color-vue">Vue/Nuxt</a>,
-              <a class="txtanim link-color-rust">Svelte/SvelteKit</a>), and
-              server-side scripting languages (<a
+              >,
+              <a
+                class="txtanim link-color-vue"
+                href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=vue&sort="
+                >Vue/Nuxt</a
+              >,
+              <a
+                class="txtanim link-color-rust"
+                href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=javascript&sort="
+                >Svelte/SvelteKit</a
+              >), and server-side scripting languages (<a
                 class="txtanim link-color-projects"
+                href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=javascript&sort="
                 >Node.js</a
-              >, <a class="txtanim link-color-cpp">C++</a>,
-              <a class="txtanim link-color-rust">Rust</a>,
-              <a class="txtanim link-color-py">Python</a>).
+              >,
+              <a
+                class="txtanim link-color-cpp"
+                href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=c%2B%2B&sort="
+                >C++</a
+              >,
+              <a
+                class="txtanim link-color-rust"
+                href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=rust&sort="
+                >Rust</a
+              >,
+              <a
+                class="txtanim link-color-py"
+                href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=python&sort="
+                >Python</a
+              >).
             </p>
             <a class="txtanim txtanim link-color-linux">Linux </a>
             <p>
               Proficient with the
-              <a class="txtanim link-color-linux">Linux</a> command line
-              operation, comfortable with
+              <a
+                class="txtanim link-color-linux"
+                href="https://github.com/GabriWar/LARBS"
+                >Linux</a
+              >
+              command line operation, comfortable with
               <a class="txtanim link-color">Shell Scripting</a> and automation,
               adept at optimizing system performance and troubleshooting.
             </p>
