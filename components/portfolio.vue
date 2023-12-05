@@ -8,6 +8,9 @@
           </div>
         </div>
       </div>
+
+          <button class="bttn-translate" @click="translatetext">BR/EN</button>
+      
       <div
         class="name"
         id="animate"
@@ -19,11 +22,12 @@
 
     <div class="txtcontainer">
       <div class="resumeEN">
-        <div class="resume" data-visible="1">
-          <a class="txtanim link-color" @click="handleclick('resumetxt')"
+        <div class="resume " data-visible="1">
+          <a class="txtanim link-color" data-translate="Resumo" @click="handleclick('resumetxt')"
             >Resume</a
           >
-          <p class="resumetxt" data-visible="0">
+          <p class="resumetxt" data-visible="0" data-translate="
+Olá, eu sou o Gabriel, um entusiasta Desenvolvedor Full Stack que atualmente está estudando Ciência da Computação. Com um amor profundo pelo Linux, me considero um usuário avançado. Eu adoro software livre e de código aberto. Minha curiosidade vai além da programação; também sou habilidoso em manipulação de imagens. Além disso, meu amor por debugar aplicativos e fazer modificações em telefones Android contribui para minhas habilidades técnicas.">
             Hello, I'm Gabriel, a passionate Full Stack Developer currently
             studying Computer Science. With a deep-rooted love for Linux, I
             consider myself a power user,I love libre and open-source software.
@@ -33,13 +37,13 @@
           </p>
         </div>
         <div class="WebDev" data-visible="1">
-          <a class="txtanim link-color-web" @click="handleclick('resumeWebDev')"
+          <a class="txtanim link-color-web" data-translate="WebDev" @click="handleclick('resumeWebDev')"
             >WebDev</a
           >
-          <p class="resumeWebDev" data-visible="0">
+          <p class="resumeWebDev" data-visible="0" data-translate="Proficiente tanto nas tecnologias de front-end quanto de back-end, com experiência em HTML, CSS e JavaScript.">
             Proficient in both front-end and back-end technologies, experienced
             with HTML, CSS, JavaScript (<a
-              class="txtanim link-color-react"
+              class="txtanim link-color-react" 
               href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=javascript&sort="
               >React/Next</a
             >,
@@ -156,12 +160,12 @@
 <script setup>
 import genRandom from '~/utils/genrandom.js';
 import animaText from '~/utils/animatext.js';
+import translatetext from '~/utils/translate.js';
 import { ref } from 'vue';
 
 const randomChars = ref('');
 const mouseX = ref(0);
 const mouseY = ref(0);
-
 randomChars.value = 'GabriWar'.repeat(1050);
 
 const handleclick = (...cssclasses) => {
@@ -177,17 +181,30 @@ const handleclick = (...cssclasses) => {
     }
   });
 };
-
 const handleMouseMove = (event) => {
   mouseX.value = event.clientX;
   mouseY.value = event.clientY;
   randomChars.value = genRandom(6000);
   document.documentElement.style.setProperty('--x', `${mouseX.value}px`);
   document.documentElement.style.setProperty('--y', `${mouseY.value}px`);
+
+
+
+
 };
 </script>
 
 <style scoped>
 @import url(assets/css/portfolio.css);
-
+.bttn-translate{
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  border: 2px solid #fff;
+  color: #fff;
+  transition: 0.5s;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+}
 </style>

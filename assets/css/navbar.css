@@ -35,7 +35,7 @@
 
 .link-active {
   font-size: 1rem;
-  animation: glitch 2s steps(100) infinite, increaseFontSize 0.4s forwards;
+  animation: glitch 2s steps(100) infinite, increaseFontSize 0.8s forwards;
 }
 
 .link-off {
