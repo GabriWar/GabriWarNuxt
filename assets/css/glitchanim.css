@@ -48,7 +48,7 @@
   }
 
   41% {
-    text-shadow: 50px 0 0 blue, -50px 0 0 lime;
+    text-shadow: 50px 0 0 blue, -30px 0 0 lime;
   }
 
   42% {
@@ -152,7 +152,7 @@
   }
 
   91% {
-    text-shadow: 60px 0 0 lime, -60px 0 0 blue;
+    text-shadow: 20px 0 0 lime, -60px 0 0 blue;
   }
 
   92% {
