@@ -1,19 +1,23 @@
 @import url(assets/css/hoveranim.css);
 .all {
   height: 90vh;
-  overflow: hidden;
 }
-
+.proj, .projtxt{
+  margin-bottom: 60px;
+}
 .resumeEN {
   z-index: 1;
-  font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
   margin-top: 10px;
+  overflow: hidden;
+  display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
 }
 
 .txtcontainer {
   display: grid;
   grid-template-columns: 1fr;
-  font-size: 1.5rem;
   width: 45%;
   padding-top: 48px;
 }
@@ -51,7 +55,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2rem;
+  font-size: 1.9rem;
 }
 
 .randtxt {

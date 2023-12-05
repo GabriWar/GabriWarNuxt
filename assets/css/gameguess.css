@@ -18,17 +18,6 @@ td,
   overflow: auto;
 }
 
-.tablecontainer::-webkit-scrollbar {
-  width: 5px;
-}
-
-.tablecontainer::-webkit-scrollbar-track {
-  background: #000000;
-}
-
-.tablecontainer::-webkit-scrollbar-thumb {
-  background: #999999;
-}
 
 .table {
   margin: 0 auto;
