@@ -190,39 +190,4 @@ const handleMouseMove = (event) => {
 <style scoped>
 @import url(assets/css/portfolio.css);
 
-*[data-visible='0'] {
-  animation: fadeOut 0.3s ease-in-out;
-  transition: font-size 0.5s ease-in-out;
-  pointer-events: none;
-  font-size: 0;
-  
-}
-
-*[data-visible='1'] {
-  animation: fadeIn 0.3s ease-in-out;
-  transition: font-size 0.5s ease-in-out;
-  font-size: clamp(1rem, 1.5vw, 1.4rem);
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    height: 0%;
-  }
-  100% {
-    opacity: 1;
-    height: 100%;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    height: 100%;
-  }
-  100% {
-    opacity: 0;
-    height: 0%;
-  }
-}
 </style>
