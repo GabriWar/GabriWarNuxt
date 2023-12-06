@@ -1,3 +1,13 @@
+@import url(assets/css/hoveranim.css);
+@import url(assets/css/glitchanim.css);
+.lower{
+  color: red;
+}
+.higher{
+  color: green;
+} 
+
+
 input,
 button,
 thead,
@@ -11,7 +21,21 @@ td,
   border-color: white;
   font-size: clamp(1rem, 3vw, 2rem);
 }
+.bttn-translate {
+  position: absolute;
+  top: 0%;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  right: 0%;
+  transition: 0.5s;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
 
+}
+
+.bttn-translate:hover {
+  animation: glitch 2s steps(100) infinite, increaseFontSize 0.8s forwards;
+}
 .tablecontainer {
   height: 400px;
   width: fit-content;

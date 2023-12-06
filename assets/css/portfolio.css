@@ -1,4 +1,5 @@
 @import url(assets/css/hoveranim.css);
+@import url(assets/css/glitchanim.css);
 *[data-visible='0'] {
   transition: font-size 0.5s cubic-bezier(.62,-0.33,.48,1.1), opacity 0.8s ease-in-out;
   pointer-events: none;
