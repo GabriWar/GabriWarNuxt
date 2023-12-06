@@ -34,7 +34,7 @@
     />
     <button data-translate="Enviar" v-if="gameOver" @click="sendScore">Submit</button>
     <p class="aviso2" v-if="gameOver">No special characters, please :)</p>
-    <table class="table" v-if="highScores.length > 0">
+    <table class="table" v-if="highScores.length > 0" aria-label="High Scores Table">
       <div class="tablecontainer">
         <thead>
           <tr>
