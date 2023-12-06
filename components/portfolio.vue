@@ -9,7 +9,7 @@
         </div>
       </div>
 
-      <div class="bttn-translate" @click="translatetext, translatetext(1)">BR/EN</div>
+      <div class="bttn-translate" @click="translatetext">BR/EN</div>
 
       <div class="name" id="animate" @mouseover="animaText('animate', 'Gabriel', 'Guerra')">
         GabriWar
@@ -121,19 +121,5 @@ const handleMouseMove = (event) => {
 @import url(assets/css/portfolio.css);
 @import url(assets/css/glitchanim.css);
 
-.bttn-translate {
-  position: absolute;
-  top: 0%;
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  right: 0%;
-  transition: 0.5s;
-  overflow: hidden;
-  z-index: 1;
-  cursor: pointer;
 
-}
-
-.bttn-translate:hover {
-  animation: glitch 2s steps(100) infinite, increaseFontSize 0.8s forwards;
-}
 </style>
