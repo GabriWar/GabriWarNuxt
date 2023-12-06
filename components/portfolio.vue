@@ -9,7 +9,7 @@
         </div>
       </div>
 
-      <button class="bttn-translate" @click="translatetext">BR/EN</button>
+      <div class="bttn-translate" @click="translatetext, translatetext(1)">BR/EN</div>
 
       <div class="name" id="animate" @mouseover="animaText('animate', 'Gabriel', 'Guerra')">
         GabriWar
@@ -35,20 +35,13 @@
           <p class="resumeWebDev" data-visible="0"
             data-translate="Proficiente tanto nas tecnologias de front-end quanto de back-end, com experiência em HTML, CSS e JavaScript (React/Next, Vue/Nuxt, Svelte/SvelteKit), e linguagens server-side/BackEnd (Node.js, C++, Rust, Python).">
             Proficient in both front-end and back-end technologies, experienced
-            with HTML, CSS, JavaScript (<a class="txtanim link-color-react"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=javascript&sort=">React/Next</a>,
-            <a class="txtanim link-color-vue"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=vue&sort=">Vue/Nuxt</a>,
-            <a class="txtanim link-color-rust"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=javascript&sort=">Svelte/SvelteKit</a>),
-            and server-side scripting languages (<a class="txtanim link-color-projects"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=javascript&sort=">Node.js</a>,
-            <a class="txtanim link-color-cpp"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=c%2B%2B&sort=">C++</a>,
-            <a class="txtanim link-color-rust"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=rust&sort=">Rust</a>,
-            <a class="txtanim link-color-py"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=python&sort=">Python</a>).
+            with HTML, CSS, JavaScript (<a class="txtanim link-color-react" to="/links/2">React/Next</a>,
+            <NuxtLink class="txtanim link-color-vue" to="/links/3">Vue/Nuxt</NuxtLink>,
+            <NuxtLink class="txtanim link-color-rust" to="/links/2">Svelte/SvelteKit</NuxtLink>),
+            and server-side scripting languages (<a class="txtanim link-color-projects" to="/links/2">Node.js</a>,
+            <NuxtLink class="txtanim link-color-cpp" to="/links/4">C++</NuxtLink>,
+            <NuxtLink class="txtanim link-color-rust" to="/links/5">Rust</NuxtLink>,
+            <NuxtLink class="txtanim link-color-py" to="/links/6">Python</NuxtLink>).
           </p>
         </div>
         <div class="linux" data-visible="1">
@@ -56,7 +49,7 @@
           <p class="resumelinux" data-visible="0"
             data-translate="Proficiente com o terminal linux, confortavel com a operação na linha de comando, Shell Scripting, e automação, habilidoso em optimização de performance e troubleshooting">
             Proficient with the
-            <a class="txtanim link-color-linux" href="https://github.com/GabriWar/LARBS">Linux</a>
+            <NuxtLink class="txtanim link-color-linux" to="/links/7">Linux</NuxtLink>
             command line operation, comfortable with
             <a class="txtanim link-color">Shell Scripting</a> and automation,
             adept at optimizing system performance and troubleshooting.
@@ -77,20 +70,13 @@
           <!-- had to get an special class for this one -->
           &nbsp
           <p class="resumeproj" data-visible="0">
-            <a class="txtanim link-color-projects"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=&sort=">GitHub</a>&nbsp
-            <a class="txtanim txta\nim link-color-js"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=javascript&sort=">JavaScript</a>&nbsp
-            <a class="txtanim txtanim link-color-py"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=python&sort=">Python</a>&nbsp
-            <a class="txtanim txtanim link-color-cpp"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=c%2B%2B&sort=">C++</a>&nbsp
-            <a class="txtanim txtanim link-color-rust"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=rust&sort=">Rust</a>&nbsp
-            <a class="txtanim txtanim link-color-react"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=javascript&sort=">React</a>&nbsp
-            <a class="txtanim txtanim link-color-vue"
-              href="https://github.com/GabriWar?tab=repositories&q=&type=source&language=vue&sort=">Vue</a>&nbsp
+            <NuxtLink class="txtanim link-color-projects" to="/links/1">GitHub</NuxtLink>&nbsp
+            <NuxtLink class="txtanim txta\nim link-color-js" to="/links/2">JavaScript</NuxtLink>&nbsp
+            <NuxtLink class="txtanim txtanim link-color-py" to="/links/6">Python</NuxtLink>&nbsp
+            <NuxtLink class="txtanim txtanim link-color-cpp" to="/links/4">C++</NuxtLink>&nbsp
+            <NuxtLink class="txtanim txtanim link-color-rust" to="/links/5">Rust</NuxtLink>&nbsp
+            <NuxtLink class="txtanim txtanim link-color-react" to="/links/2">React</NuxtLink>&nbsp
+            <NuxtLink class="txtanim txtanim link-color-vue" to="/links/3">Vue</NuxtLink>&nbsp
           </p>
         </div>
       </div>
@@ -133,22 +119,21 @@ const handleMouseMove = (event) => {
 
 <style scoped>
 @import url(assets/css/portfolio.css);
+@import url(assets/css/glitchanim.css);
 
 .bttn-translate {
   position: absolute;
   top: 0%;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   right: 0%;
-  border: 1px solid #fff;
-  color: #fff;
   transition: 0.5s;
   overflow: hidden;
   z-index: 1;
   cursor: pointer;
+
 }
+
 .bttn-translate:hover {
-  background: #fff;
-  color: #000;
+  animation: glitch 2s steps(100) infinite, increaseFontSize 0.8s forwards;
 }
-
-
 </style>
