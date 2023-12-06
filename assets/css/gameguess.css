@@ -29,6 +29,7 @@ td,
   transition: 0.5s;
   overflow: hidden;
   z-index: 1;
+  
   cursor: pointer;
 
 }

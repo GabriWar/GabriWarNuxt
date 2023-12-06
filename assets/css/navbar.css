@@ -38,9 +38,6 @@
   animation: glitch 2s steps(100) infinite, increaseFontSize 0.8s forwards;
 }
 
-.link-off {
-}
-
 @keyframes increaseFontSize {
   0% {
     font-size: 1rem;
