@@ -1,5 +1,9 @@
-const translatetext = () => {
-    const elements = document.querySelectorAll(`[data-translate]`);
+const translatetext = (child) => {
+    let selector = `[data-translate]`;
+    if (child == 1) {
+        selector = `[data-translate-child]`;
+    }
+    const elements = document.querySelectorAll(selector);
     elements.forEach((element) => {
         let firstText = element.innerText;
         let secondText = element.dataset.translate;
