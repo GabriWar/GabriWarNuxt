@@ -120,6 +120,4 @@ const handleMouseMove = (event) => {
 <style scoped>
 @import url(assets/css/portfolio.css);
 @import url(assets/css/glitchanim.css);
-
-
 </style>

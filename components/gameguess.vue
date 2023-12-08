@@ -1,12 +1,21 @@
 <template>
   <title>Guessing Game</title>
-    <div class="bttn-translate" @click="translatetext">BR/EN</div>
+  <div class="bttn-translate" @click="translatetext">BR/EN</div>
   <div class="bg">
     <h1 data-translate="Adivinhe o número">Guess the Number</h1>
     <div class="game">
-      <p data-translate="Clique para começar o jogo" v-if="!gameStarted">Click the button to start the game</p>
-      <button data-translate="Começar" v-if="!gameStarted" @click="startGame">Start Game</button>
-      <p data-translate="Adivinhe o número de 0 a 100:" v-if="gameStarted && !gameOver">Guess a number between 0 and 100:</p>
+      <p data-translate="Clique para começar o jogo" v-if="!gameStarted">
+        Click the button to start the game
+      </p>
+      <button data-translate="Começar" v-if="!gameStarted" @click="startGame">
+        Start Game
+      </button>
+      <p
+        data-translate="Adivinhe o número de 0 a 100:"
+        v-if="gameStarted && !gameOver"
+      >
+        Guess a number between 0 and 100:
+      </p>
       <input
         v-model="guess"
         v-if="gameStarted && !gameOver"
@@ -15,11 +24,29 @@
         max="100"
         @keyup.enter="checkGuess"
       />
-      <button data-translate="Enviar" v-if="gameStarted && !gameOver" @click="checkGuess">Enter</button>
+      <button
+        data-translate="Enviar"
+        v-if="gameStarted && !gameOver"
+        @click="checkGuess"
+      >
+        Enter
+      </button>
       <p v-if="gameOver">You guessed the number in {{ attempts }} attempts.</p>
-      <p class="lower" data-translate="O número é menor" v-if="!gameOver && higher">The number is lower</p>
-      <p class="higher" data-translate="O número é maior" v-if="!gameOver && lower">The number is higher</p>
-      <p >Attempts: {{ attempts }}</p>
+      <p
+        class="lower"
+        data-translate="O número é menor"
+        v-if="!gameOver && higher"
+      >
+        The number is lower
+      </p>
+      <p
+        class="higher"
+        data-translate="O número é maior"
+        v-if="!gameOver && lower"
+      >
+        The number is higher
+      </p>
+      <p>Attempts: {{ attempts }}</p>
       <p v-if="gameOver">Time: {{ milliseconds }} milliseconds</p>
       <p v-if="gameOver">Score: {{ milliseconds * attempts }}</p>
       <p class="aviso1" v-if="gameOver">Score = time * attempts</p>
@@ -32,9 +59,15 @@
       placeholder="Name"
       class="input"
     />
-    <button data-translate="Enviar" v-if="gameOver" @click="sendScore">Submit</button>
+    <button data-translate="Enviar" v-if="gameOver" @click="sendScore">
+      Submit
+    </button>
     <p class="aviso2" v-if="gameOver">No special characters, please :)</p>
-    <table class="table" v-if="highScores.length > 0" aria-label="High Scores Table">
+    <table
+      class="table"
+      v-if="highScores.length > 0"
+      aria-label="High Scores Table"
+    >
       <div class="tablecontainer">
         <thead>
           <tr>
@@ -62,7 +95,6 @@
     <a href="https://github.com/GabriWar">Gabriel Guerra</a>
   </div>
 </template>
-
 
 <script setup>
 import { ref, onMounted } from 'vue';
