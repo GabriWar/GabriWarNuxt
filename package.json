@@ -18,6 +18,10 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "@mediapipe/drawing_utils": "^0.3.1675466124",
+    "@mediapipe/hands": "^0.4.1675469240",
+    "@mediapipe/tasks-vision": "^0.10.8",
     "vanilla-tilt": "^1.8.1"
   }
 }
