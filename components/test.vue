@@ -135,7 +135,16 @@ let lastVideoTime = -1;
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
-
+.canvas {
+  z-index: 1;
+  position: absolute;
+  pointer-events: none;
+}
+.output_canvas {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+}
 .cam {
     position: absolute;
     top: 50%;
