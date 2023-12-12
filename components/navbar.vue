@@ -10,9 +10,13 @@
           DESIGNS</NuxtLink>
       </li>
       <li>
-        <NuxtLink class="txtanim link-color-projects" to="/games" active-class="link-static-projects link-active glitch">
+        <NuxtLink class="txtanim link-color-rust" to="/games" active-class="link-static-projects link-active glitch">
           GAMES</NuxtLink>
       </li>
+            <li>
+          <NuxtLink class="txtanim link-color-projects" to="/ia" active-class="link-static-projects link-active glitch">
+            IA</NuxtLink>
+        </li>
     </ul>
   </nav>
 </template>

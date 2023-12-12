@@ -1,6 +1,7 @@
 <template>
-  <section id="demos" class="invisible">
-    <video id="webcam" autoplay playsinline></video>
+  <section id="demos">
+    <h1 class="title">MediaPipe Hand Gesture Recognition</h1>
+    <video id="webcam" class="cam" autoplay playsinline></video>
     <canvas
       class="output_canvas"
       id="output_canvas"
@@ -36,7 +37,6 @@ const createGestureRecognizer = async () => {
       delegate: 'GPU',
     },
   });
-  console.log('createGestureRecognizer', gestureRecognizer.value);
 };
 onBeforeMount(async () => {
   video.value = document.getElementById('webcam');
@@ -45,17 +45,10 @@ onBeforeMount(async () => {
   gestureOutput.value = document.getElementById('gesture_output');
   await createGestureRecognizer();
   async function predictWebcam() {
-    console.log('predictWebcam');
     const webcamElement = video.value;
     let nowInMs = Date.now();
     if (video.value.currentTime !== lastVideoTime) {
       lastVideoTime = video.value.currentTime;
-      console.log(
-        'predictWebcam',
-        lastVideoTime,
-        results.value,
-        gestureRecognizer.value
-      );
       results.value = gestureRecognizer.value.detectForVideo(
         video.value,
         nowInMs
@@ -119,14 +112,9 @@ onMounted(async () => {
     console.error('getUserMedia is not supported');
   }
   console.log('onMounted');
-  console.log('onMounted', gestureRecognizer.value);
 });
 
-console.log(
-  'created?',
-  createGestureRecognizer(),
-  createGestureRecognizer.value
-);
+
 const demosSection = ref(null);
 const video = ref(null);
 const canvasElement = ref(null);
@@ -141,12 +129,16 @@ const constraints = {
 let lastVideoTime = -1;
 </script>
 <style scoped>
-webcam {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.title{
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    
+}
+.cam {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 </style>
