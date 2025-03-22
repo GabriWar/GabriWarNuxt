@@ -1,8 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/supabase', 'nuxt-purgecss'],
-  supabase: {
-    redirect: false,
-  },
+  modules: ['nuxt-purgecss'],
+  compatibilityDate: '2025-03-22',
 });

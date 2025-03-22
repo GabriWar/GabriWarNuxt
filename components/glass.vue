@@ -69,4 +69,20 @@ import VanillaTilt from 'vanilla-tilt';
 
 <style scoped>
 @import url(assets/css/glass.css);
+
+:root {
+  --text: #ffffff;
+}
+
+.text {
+  color: #ffffff;
+}
+
+.text h2, .text p {
+  color: #ffffff;
+}
+
+.text a {
+  color: #ffffff;
+}
 </style>

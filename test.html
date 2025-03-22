@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ASCII Falling Text with Cellular Automata</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      overflow: hidden;
+    }
+    #ascii-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    pre {
+      font-family: monospace;
+      background-color: transparent;
+      color: #FFF;
+      line-height: 1;
+      overflow: hidden;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 16px;
+      background-color: #444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 10;
+      position: relative;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    button.active {
+      background-color: #393;
+    }
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      text-align: center;
+    }
+    #typing-preview {
+      position: fixed;
+      top: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #0f0;
+      font-family: monospace;
+      font-size: 16px;
+      z-index: 20;
+      text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    }
+  </style>
+  <script>
+    /**
+     * ASCII Falling Text with Cellular Automata Physics
+     * Enhanced version with improved performance, drag/delete functionality,
+     * background toggle, and percentage-based sizing
+     */
+    class ASCIIFallingText {
+      constructor(containerId, options = {}) {
+        this.options = {
+          gravity: options.gravity || 0.7,
+          friction: options.friction || 0.4,
+          fps: options.fps || 60,
+          freezeTime: options.freezeTime || 2000,
+          randomizationChance: options.randomizationChance || 0.05,
+          ...options
+        };
+        
+        this.container = document.getElementById(containerId);
+        this.grid = [];
+        this.frozenCells = new Map();
+        this.velocities = new Map(); // Track velocities for each particle
+        this.rainEnabled = true;
+        this.intervalId = null;
+        this.rainIntervalId = null;
+        this.lastFrameTime = 0;
+        this.frameInterval = 1000 / this.options.fps;
+        
+        // Mouse interaction states
+        this.isDragging = false;
+        this.isRightDragging = false;
+        this.lastDragPos = { x: -1, y: -1 };
+        this.lastClickTime = 0;
+        
+        // Typed text handling
+        this.typedText = '';
+        this.typingTimeout = null;
+        
+        // Calculate dimensions based on screen size
+        this.calculateDimensions();
+        
+        // Initialize grids and setup
+        this.initializeGrids();
+        this.setupDisplay();
+        this.setupTypingPreview();
+      }
+      
+      calculateDimensions() {
+        const charWidth = 8;
+        const charHeight = 14;
+        
+        // Use entire screen
+        this.options.width = Math.floor(window.innerWidth / charWidth);
+        this.options.height = Math.floor(window.innerHeight / charHeight);
+        
+        // Ensure minimum dimensions
+        this.options.width = Math.max(this.options.width, 10);
+        this.options.height = Math.max(this.options.height, 5);
+      }
+      
+      initializeGrids() {
+        // Use TypedArray for better performance
+        this.grid = new Array(this.options.height);
+        for (let y = 0; y < this.options.height; y++) {
+          this.grid[y] = new Uint8Array(this.options.width).fill(32);
+        }
+      }
+      
+      setupDisplay() {
+        if (!this.container) {
+          this.container = document.createElement('div');
+          document.body.appendChild(this.container);
+        }
+        
+        this.display = document.createElement('pre');
+        this.updateDisplaySize();
+        
+        this.container.innerHTML = '';
+        this.container.appendChild(this.display);
+        
+        // Use passive event listeners for better performance
+        this.display.addEventListener('mousedown', this.handleMouseDown.bind(this), { passive: true });
+        this.display.addEventListener('mousemove', this.handleMouseMove.bind(this), { passive: true });
+        this.display.addEventListener('mouseup', this.handleMouseUp.bind(this), { passive: true });
+        
+        // Block context menu
+        this.display.addEventListener('contextmenu', (e) => e.preventDefault(), { passive: true });
+        
+        window.addEventListener('keydown', this.handleKeyPress.bind(this), { passive: true });
+      }
+      
+      updateDisplaySize() {
+        this.display.style.width = this.options.width + 'ch';
+        this.display.style.height = this.options.height + 'em';
+      }
+      
+      setupTypingPreview() {
+        this.typingPreviewEl = document.createElement('div');
+        this.typingPreviewEl.id = 'typing-preview';
+        document.body.appendChild(this.typingPreviewEl);
+      }
+      
+      handleResize() {
+        const previousWidth = this.options.width;
+        const previousHeight = this.options.height;
+        
+        this.calculateDimensions();
+        
+        if (Math.abs(previousWidth - this.options.width) > 3 || 
+            Math.abs(previousHeight - this.options.height) > 3) {
+          this.stop();
+          this.initializeGrids();
+          this.frozenCells.clear();
+          this.velocities.clear();
+          this.updateDisplaySize();
+          this.render();
+          this.start();
+        }
+      }
+      
+      addText(text, x = 0, y = 0, freeze = false) {
+        const lines = text.split('\n');
+        const frozenPositions = [];
+        
+        for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+          const line = lines[lineIndex];
+          const targetY = y + lineIndex;
+          
+          if (targetY >= this.options.height) continue;
+          
+          for (let i = 0; i < line.length; i++) {
+            const targetX = x + i;
+            if (targetX >= this.options.width) continue;
+            
+            this.grid[targetY][targetX] = line.charCodeAt(i);
+            
+            if (freeze) {
+              frozenPositions.push({x: targetX, y: targetY});
+            }
+          }
+        }
+        
+        if (freeze && frozenPositions.length > 0) {
+          const now = Date.now();
+          frozenPositions.forEach(pos => {
+            this.frozenCells.set(`${pos.x},${pos.y}`, now + this.options.freezeTime);
+          });
+        }
+        
+        this.render();
+      }
+      
+      clearText() {
+        this.initializeGrids();
+        this.frozenCells.clear();
+        this.velocities.clear();
+        this.render();
+      }
+      
+      isFrozen(x, y) {
+        const key = `${x},${y}`;
+        const now = Date.now();
+        const freezeTime = this.frozenCells.get(key);
+        
+        if (freezeTime && freezeTime > now) {
+          return true;
+        } else if (freezeTime) {
+          this.frozenCells.delete(key);
+        }
+        
+        return false;
+      }
+      
+      applyAutomataRules() {
+        // Pre-allocate random values for better performance
+        const randomValues = new Float32Array(this.options.width);
+        for (let i = 0; i < this.options.width; i++) {
+          randomValues[i] = Math.random();
+        }
+        
+        // Process from bottom to top
+        for (let y = this.options.height - 2; y >= 0; y--) {
+          const currentRow = this.grid[y];
+          const nextRow = this.grid[y + 1];
+          
+          for (let x = 0; x < this.options.width; x++) {
+            const current = currentRow[x];
+            
+            if (current === 32 || this.isFrozen(x, y)) continue;
+            
+            const below = nextRow ? nextRow[x] : null;
+            const randomValue = randomValues[x];
+            const key = `${x},${y}`;
+            const velocity = this.velocities.get(key) || { x: 0, y: 0 };
+            
+            // Apply velocity
+            if (velocity.x !== 0 || velocity.y !== 0) {
+              const newX = Math.round(x + velocity.x);
+              const newY = Math.round(y + velocity.y);
+              
+              if (newX >= 0 && newX < this.options.width && 
+                  newY >= 0 && newY < this.options.height && 
+                  this.grid[newY][newX] === 32) {
+                this.grid[newY][newX] = current;
+                this.grid[y][x] = 32;
+                this.velocities.set(`${newX},${newY}`, velocity);
+                this.velocities.delete(key);
+                continue;
+              }
+              
+              // Reduce velocity on collision
+              velocity.x *= 0.8;
+              velocity.y *= 0.8;
+              this.velocities.set(key, velocity);
+            }
+            
+            // More aggressive anti-tower measure with balanced direction
+            if (randomValue < this.options.randomizationChance) {
+              const direction = Math.random() < 0.5 ? -1 : 1;
+              const newX = x + direction;
+              
+              if (newX >= 0 && newX < this.options.width && currentRow[newX] === 32) {
+                currentRow[newX] = current;
+                currentRow[x] = 32;
+                continue;
+              }
+            }
+            
+            // Fall with gravity
+            if (below === 32 && randomValue < this.options.gravity) {
+              nextRow[x] = current;
+              currentRow[x] = 32;
+              continue;
+            }
+            
+            // Enhanced sliding behavior with more randomness
+            if (below !== 32 && randomValue < this.options.friction) {
+              const slideRandom = Math.random();
+              const directions = slideRandom < 0.5 ? [-1, 1] : [1, -1];
+              
+              if (Math.random() < 0.8) {
+                for (const direction of directions) {
+                  const newX = x + direction;
+                  
+                  if (
+                    newX >= 0 && 
+                    newX < this.options.width && 
+                    currentRow[newX] === 32 &&
+                    (y + 1 >= this.options.height || nextRow[newX] !== 32)
+                  ) {
+                    currentRow[newX] = current;
+                    currentRow[x] = 32;
+                    break;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      render() {
+        // Use StringBuilder pattern for better performance
+        const rows = new Array(this.options.height);
+        for (let y = 0; y < this.options.height; y++) {
+          rows[y] = String.fromCharCode.apply(null, this.grid[y]);
+        }
+        this.display.textContent = rows.join('\n');
+      }
+      
+      start() {
+        if (this.intervalId) return;
+        
+        const animate = (timestamp) => {
+          if (timestamp - this.lastFrameTime >= this.frameInterval) {
+            this.applyAutomataRules();
+            this.render();
+            this.lastFrameTime = timestamp;
+          }
+          this.intervalId = requestAnimationFrame(animate);
+        };
+        
+        this.intervalId = requestAnimationFrame(animate);
+        this.startRain();
+      }
+      
+      startRain() {
+        if (this.rainEnabled && !this.rainIntervalId) {
+          this.rainIntervalId = setInterval(() => {
+            this.addRandomRain();
+          }, 100);
+        }
+      }
+      
+      stopRain() {
+        if (this.rainIntervalId) {
+          clearInterval(this.rainIntervalId);
+          this.rainIntervalId = null;
+        }
+      }
+      
+      toggleRain() {
+        this.rainEnabled = !this.rainEnabled;
+        if (this.rainEnabled) {
+          this.startRain();
+        } else {
+          this.stopRain();
+        }
+        return this.rainEnabled;
+      }
+      
+      stop() {
+        if (this.intervalId) {
+          cancelAnimationFrame(this.intervalId);
+          this.intervalId = null;
+        }
+        this.stopRain();
+      }
+      
+      reset() {
+        this.stop();
+        this.clearText();
+      }
+      
+      screenToGrid(clientX, clientY) {
+        const rect = this.display.getBoundingClientRect();
+        const charWidth = rect.width / this.options.width;
+        const charHeight = rect.height / this.options.height;
+        
+        return {
+          x: Math.floor((clientX - rect.left) / charWidth),
+          y: Math.floor((clientY - rect.top) / charHeight)
+        };
+      }
+      
+      handleMouseDown(e) {
+        const pos = this.screenToGrid(e.clientX, e.clientY);
+        this.lastDragPos = pos;
+        
+        if (e.button === 2) {
+          e.preventDefault();
+          this.isRightDragging = true;
+          this.deleteCharsAt(pos.x, pos.y);
+        } else if (e.button === 0) {
+          this.isDragging = true;
+          this.addCharsAt(pos.x, pos.y);
+        }
+      }
+      
+      handleMouseMove(e) {
+        if (!this.isDragging && !this.isRightDragging) return;
+        
+        const pos = this.screenToGrid(e.clientX, e.clientY);
+        
+        if (pos.x === this.lastDragPos.x && pos.y === this.lastDragPos.y) {
+          return;
+        }
+        
+        this.lastDragPos = pos;
+        
+        if (this.isRightDragging) {
+          this.deleteCharsAt(pos.x, pos.y);
+        } else if (this.isDragging) {
+          this.addCharsAt(pos.x, pos.y);
+        }
+      }
+      
+      handleMouseUp() {
+        this.isDragging = false;
+        this.isRightDragging = false;
+      }
+      
+      addCharsAt(x, y, radius = 2) {
+        const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]()<>+-*/=.,;:_$#@!?';
+        const charsLength = chars.length;
+        
+        for (let dx = -radius; dx <= radius; dx++) {
+          for (let dy = -radius; dy <= radius; dy++) {
+            const tx = x + dx;
+            const ty = y + dy;
+            
+            if (
+              tx >= 0 && tx < this.options.width &&
+              ty >= 0 && ty < this.options.height &&
+              dx*dx + dy*dy <= radius*radius
+            ) {
+              this.grid[ty][tx] = chars.charCodeAt(Math.floor(Math.random() * charsLength));
+            }
+          }
+        }
+        
+        this.render();
+      }
+      
+      deleteCharsAt(x, y, radius = 2) {
+        for (let dx = -radius; dx <= radius; dx++) {
+          for (let dy = -radius; dy <= radius; dy++) {
+            const tx = x + dx;
+            const ty = y + dy;
+            
+            if (
+              tx >= 0 && tx < this.options.width &&
+              ty >= 0 && ty < this.options.height &&
+              dx*dx + dy*dy <= radius*radius
+            ) {
+              this.grid[ty][tx] = 32;
+              this.frozenCells.delete(`${tx},${ty}`);
+            }
+          }
+        }
+        
+        this.render();
+      }
+      
+      handleKeyPress(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON') {
+          return;
+        }
+        
+        if (e.key === 'Enter') {
+          if (this.typedText.length > 0) {
+            const x = Math.floor(Math.random() * (this.options.width - this.typedText.length));
+            const y = Math.floor(Math.random() * (this.options.height / 3));
+            this.addText(this.typedText, x, y, true);
+            this.typedText = '';
+            this.updateTypingPreview();
+          }
+          return;
+        }
+        
+        if (e.key === 'Escape') {
+          this.typedText = '';
+          this.updateTypingPreview();
+          return;
+        }
+        
+        if (e.key === 'Backspace' && this.typedText.length > 0) {
+          this.typedText = this.typedText.slice(0, -1);
+          this.updateTypingPreview();
+          return;
+        }
+        
+        if (e.key.length === 1) {
+          this.typedText += e.key;
+          this.updateTypingPreview();
+          
+          if (this.typingTimeout) {
+            clearTimeout(this.typingTimeout);
+          }
+          
+          this.typingTimeout = setTimeout(() => {
+            if (this.typedText.length > 0) {
+              const x = Math.floor(Math.random() * (this.options.width - this.typedText.length));
+              const y = Math.floor(Math.random() * (this.options.height / 3));
+              this.addText(this.typedText, x, y, true);
+              this.typedText = '';
+              this.updateTypingPreview();
+            }
+          }, 3000);
+        }
+      }
+      
+      updateTypingPreview() {
+        if (this.typedText.length > 0) {
+          this.typingPreviewEl.textContent = this.typedText;
+          this.typingPreviewEl.style.display = 'block';
+        } else {
+          this.typingPreviewEl.style.display = 'none';
+        }
+      }
+      
+      addRandomRain() {
+        if (!this.rainEnabled) return;
+        
+        const topRow = this.grid[0];
+        const codingChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]()<>+-*/=.,;:_$#@!?';
+        const codingCharsLength = codingChars.length;
+        
+        // Pre-calculate random values
+        const positions = [];
+        const charIndices = new Uint8Array(this.options.width);
+        
+        for (let x = 0; x < this.options.width; x++) {
+          if (topRow[x] === 32 && Math.random() < 0.05) {
+            positions.push(x);
+            charIndices[x] = Math.floor(Math.random() * codingCharsLength);
+          }
+        }
+        
+        // Apply in batch
+        for (let i = 0; i < positions.length; i++) {
+          const x = positions[i];
+          topRow[x] = codingChars.charCodeAt(charIndices[x]);
+        }
+      }
+    }
+
+    // Initialize when document is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!document.getElementById('ascii-container')) {
+        const container = document.createElement('div');
+        container.id = 'ascii-container';
+        document.body.appendChild(container);
+      }
+      
+      const fallingText = new ASCIIFallingText('ascii-container', {
+        gravity: 0.7,
+        friction: 0.3,
+        fps: 60,
+        freezeTime: 2000,
+        randomizationChance: 0.03
+      });
+      
+      fallingText.addText('@GabriWar', 1, 0, true);
+      fallingText.start();
+      
+      const controls = document.createElement('div');
+      controls.className = 'controls';
+      controls.innerHTML = `
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+        <button id="resetBtn">Reset</button>
+        <button id="rainBtn" class="active">Rain On</button>
+      `;
+      document.body.appendChild(controls);
+      
+      document.getElementById('startBtn').addEventListener('click', () => fallingText.start());
+      document.getElementById('stopBtn').addEventListener('click', () => fallingText.stop());
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        fallingText.reset();
+        fallingText.start();
+      });
+      
+      const rainBtn = document.getElementById('rainBtn');
+      rainBtn.addEventListener('click', () => {
+        const isRainOn = fallingText.toggleRain();
+        rainBtn.textContent = isRainOn ? 'Rain On' : 'Rain Off';
+        rainBtn.classList.toggle('active', isRainOn);
+      });
+      
+      // Debounced resize handler
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          fallingText.handleResize();
+        }, 250);
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="ascii-container"></div>
+</body>
+</html>

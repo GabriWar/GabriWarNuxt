@@ -22,3 +22,6 @@ logs
 .env
 .env.*
 !.env.example
+.vscode/extensions.json
+.vscode/settings.json
+supabase
