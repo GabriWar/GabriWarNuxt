@@ -8,6 +8,7 @@
       <button @click="toggleRain" :class="{ active: rainEnabled }">
         {{ rainEnabled ? 'Rain On' : 'Rain Off' }}
       </button>
+      <NuxtLink to="/" class="back-button">Back</NuxtLink>
     </div>
     <div v-if="typedText" class="typing-preview">{{ typedText }}</div>
   </div>
@@ -592,10 +593,6 @@ button {
   font-size: 14px;
   z-index: 10;
   position: relative;
-}
-
-button:hover {
-  background-color: #555;
 }
 
 button.active {

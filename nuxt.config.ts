@@ -2,5 +2,4 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['nuxt-purgecss'],
-  compatibilityDate: '2025-03-22',
 });

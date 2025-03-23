@@ -1,17 +1,10 @@
 .ascii-page {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   background-color: #000000;
   color: #ffffff;
   font-family: monospace;
   user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
 .ascii-container {
@@ -26,58 +19,57 @@
 
 .controls {
   position: fixed;
-  bottom: 20px;
+  bottom: 0;
   left: 0;
   right: 0;
   z-index: 10;
   text-align: center;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
+  padding: 20px 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
 }
 
-.ascii-page:hover .controls {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.controls button, .back-button {
-  margin: 5px 10px;
+.controls button {
+  margin: 0 5px;
   padding: 8px 16px;
-  background-color: #444;
+  background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
-  border: none;
+  border: 1px solid #fff;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
-  min-width: 100px;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.controls button:hover, .back-button:hover {
-  background-color: #555;
 }
 
 .controls button.active {
-  background-color: #393;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
 .back-button {
-  text-decoration: none;
   display: inline-block;
+  margin-left: 10px;
+  padding: 8px 16px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #fff;
+  border-radius: 4px;
 }
 
 .typing-preview {
   position: fixed;
-  top: 10px;
-  left: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  z-index: 100;
   text-align: center;
-  color: #0f0;
-  font-family: monospace;
-  font-size: 16px;
-  z-index: 20;
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+  max-width: 80%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 pre {
@@ -90,9 +82,6 @@ pre {
   margin: 0;
   padding: 0;
   user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
 :global(body), :global(html) {

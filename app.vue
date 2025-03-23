@@ -1,16 +1,11 @@
 <template>
   <div class="wrapperNuxt">
     <NuxtPage />
-    <Navbar v-if="!isTestPage" />
+    <Navbar />
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-
-const route = useRoute();
-const isTestPage = computed(() => route.path === '/test');
 </script>
 
 <style>

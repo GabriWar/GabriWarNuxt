@@ -37,36 +37,42 @@
                         {{ isFlipped ? 'Mirror On' : 'Mirror Off' }}
                     </button>
                 </div>
-                <div class="feature-toggles">
-                    <div class="toggle-group">
-                        <label class="toggle-label">
-                            <input type="checkbox" v-model="showLandmarks">
-                            Show Landmarks
-                        </label>
-                        <label class="toggle-label">
-                            <input type="checkbox" v-model="showConnectors">
-                            Show Connectors
-                        </label>
-                    </div>
-                    <div class="toggle-group">
-                        <label class="toggle-label">
-                            <input type="checkbox" v-model="showCursor">
-                            Show Cursor
-                        </label>
-                        <label class="toggle-label">
-                            <input type="checkbox" v-model="showCoordinates">
-                            Show Coordinates
-                        </label>
-                        <label class="toggle-label">
-                            <input type="checkbox" v-model="showFingerCount">
-                            Show Finger Count
-                        </label>
-                    </div>
-                    <div class="toggle-group">
-                        <label class="toggle-label">
-                            <input type="checkbox" v-model="showGestureInfo">
-                            Show Gesture Info
-                        </label>
+                <div class="feature-toggles-container">
+                    <button class="feature-toggles-header" @click="isFeatureTogglesExpanded = !isFeatureTogglesExpanded">
+                        <span>Feature Toggles</span>
+                        <span class="toggle-icon">{{ isFeatureTogglesExpanded ? '▼' : '▶' }}</span>
+                    </button>
+                    <div class="feature-toggles" :class="{ 'expanded': isFeatureTogglesExpanded }">
+                        <div class="toggle-group">
+                            <label class="toggle-label" :class="{ 'disabled': !showLandmarks }">
+                                <input type="checkbox" v-model="showLandmarks">
+                                Show Landmarks
+                            </label>
+                            <label class="toggle-label" :class="{ 'disabled': !showConnectors }">
+                                <input type="checkbox" v-model="showConnectors">
+                                Show Connectors
+                            </label>
+                        </div>
+                        <div class="toggle-group">
+                            <label class="toggle-label" :class="{ 'disabled': !showCursor }">
+                                <input type="checkbox" v-model="showCursor">
+                                Show Cursor
+                            </label>
+                            <label class="toggle-label" :class="{ 'disabled': !showCoordinates }">
+                                <input type="checkbox" v-model="showCoordinates">
+                                Show Coordinates
+                            </label>
+                            <label class="toggle-label" :class="{ 'disabled': !showFingerCount }">
+                                <input type="checkbox" v-model="showFingerCount">
+                                Show Finger Count
+                            </label>
+                        </div>
+                        <div class="toggle-group">
+                            <label class="toggle-label" :class="{ 'disabled': !showGestureInfo }">
+                                <input type="checkbox" v-model="showGestureInfo">
+                                Show Gesture Info
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,6 +121,7 @@ const showCoordinates = ref(true);
 const showFingerCount = ref(true);
 const showGestureInfo = ref(true);
 const isFlipped = ref(true);
+const isFeatureTogglesExpanded = ref(false);
 
 // MediaPipe variables
 let gestureRecognizer = null;
@@ -403,239 +410,5 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.hand-gesture-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #1a1a1a;
-    color: #ffffff;
-    min-height: 100vh;
-}
-
-.title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #00ff00;
-}
-
-.main-content {
-    display: flex;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-}
-
-.side-panel {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.left-panel {
-    align-items: flex-end;
-}
-
-.right-panel {
-    align-items: flex-start;
-}
-
-.center-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.video-container {
-    position: relative;
-    width: 640px;
-    height: 480px;
-    border: 2px solid #00ff00;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.controls {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #00ff00;
-    color: #000000;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #00cc00;
-}
-
-button:disabled {
-    background-color: #666666;
-    cursor: not-allowed;
-}
-
-.gesture-info, .finger-count-info, .cursor-info {
-    width: 100%;
-    background-color: rgba(0, 255, 0, 0.1);
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid rgba(0, 255, 0, 0.2);
-}
-
-.gesture-info h3 {
-    margin: 0 0 0.5rem 0;
-    color: #00ff00;
-}
-
-.gesture-info p {
-    margin: 0.5rem 0;
-    font-size: 1.2rem;
-}
-
-.finger-count-info h3 {
-    margin: 0 0 0.5rem 0;
-    color: #00ff00;
-}
-
-.finger-counts {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.hand-count {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-    background-color: rgba(0, 255, 0, 0.05);
-    border-radius: 4px;
-}
-
-.hand-label {
-    color: #00ff00;
-}
-
-.count {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.screen-cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background-color: rgba(0, 255, 0, 0.5);
-    border: 2px solid #00ff00;
-    border-radius: 50%;
-  pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: all 0.1s ease-out;
-}
-
-.cursor-info {
-    background-color: rgba(0, 255, 0, 0.1);
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-    min-width: 200px;
-}
-
-.cursor-info h3 {
-    margin: 0 0 0.5rem 0;
-    color: #00ff00;
-}
-
-.cursor-info p {
-    margin: 0.5rem 0;
-    font-size: 1.2rem;
-    color: #ffffff;
-}
-
-.feature-toggles {
-    width: 640px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: rgba(0, 255, 0, 0.1);
-    border-radius: 8px;
-    border: 1px solid rgba(0, 255, 0, 0.2);
-}
-
-.toggle-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.toggle-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #ffffff;
-    cursor: pointer;
-    padding: 0.5rem;
-    background-color: rgba(0, 255, 0, 0.05);
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.toggle-label:hover {
-    background-color: rgba(0, 255, 0, 0.1);
-}
-
-.toggle-label input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-}
-
-.flip-button {
-    background-color: #ff00ff;
-    color: #ffffff;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.flip-button.active {
-    background-color: #ff00ff;
-    box-shadow: 0 0 10px #ff00ff;
-}
-
-.flip-button:hover {
-    background-color: #cc00cc;
-    transform: scale(1.05);
-}
-</style>
+@import url(assets/css/aigesture.css);
+</style> 

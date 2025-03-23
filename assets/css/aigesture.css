@@ -1,0 +1,468 @@
+.hand-gesture-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #00ff00;
+    text-align: center;
+}
+
+.main-content {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.side-panel {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    min-width: 250px;
+}
+
+.left-panel {
+    align-items: flex-end;
+}
+
+.right-panel {
+    align-items: flex-start;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.video-container {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    border: 2px solid #00ff00;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #00ff00;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    min-width: 120px;
+}
+
+button:hover {
+    background-color: #00cc00;
+}
+
+button:disabled {
+    background-color: #666666;
+    cursor: not-allowed;
+}
+
+.gesture-info, .finger-count-info, .cursor-info {
+    width: 100%;
+    background-color: rgba(0, 255, 0, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-sizing: border-box;
+    min-height: 80px;
+    position: relative;
+}
+
+.gesture-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #00ff00;
+}
+
+.gesture-info p {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.finger-count-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #00ff00;
+}
+
+.finger-counts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.hand-count {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: rgba(0, 255, 0, 0.05);
+    border-radius: 4px;
+}
+
+.hand-label {
+    color: #00ff00;
+}
+
+.count {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.screen-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 255, 0, 0.5);
+    border: 2px solid #00ff00;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    will-change: transform;
+}
+
+.cursor-info {
+    background-color: rgba(0, 255, 0, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 200px;
+}
+
+.cursor-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #00ff00;
+}
+
+.cursor-info p {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.feature-toggles-container {
+    width: 100%;
+    background-color: rgba(0, 255, 0, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.feature-toggles-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background-color: rgba(0, 255, 0, 0.05);
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.feature-toggles-header:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+.toggle-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.feature-toggles {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0;
+}
+
+.feature-toggles.expanded {
+    max-height: 500px;
+    padding: 1rem;
+}
+
+.toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.toggle-group:last-child {
+    margin-bottom: 0;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 255, 0, 0.05);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.toggle-label:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    transform: scale(1.05);
+}
+
+.toggle-label.disabled {
+    opacity: 0.5;
+    background-color: rgba(128, 128, 128, 0.1);
+}
+
+.toggle-label input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-label.active {
+    background-color: rgba(0, 255, 0, 0.2);
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.flip-button {
+    background-color: #ff00ff;
+    color: #ffffff;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.flip-button.active {
+    background-color: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+.flip-button:hover {
+    background-color: #cc00cc;
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 800px) {
+    .hand-gesture-container {
+        padding: 10px;
+        min-height: 100dvh;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .main-content {
+        gap: 1rem;
+    }
+
+    .side-panel {
+        width: 100%;
+        max-width: 300px;
+        flex: none;
+    }
+
+    .center-content {
+        max-width: 100%;
+    }
+
+    .video-container {
+        width: 100%;
+        max-width: 480px;
+        height: auto;
+        aspect-ratio: 4/3;
+    }
+
+    .controls {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        min-width: 100px;
+    }
+
+    .gesture-info, .finger-count-info, .cursor-info {
+        min-height: 70px;
+        padding: 0.8rem;
+    }
+
+    .gesture-info p, .cursor-info p {
+        font-size: 1rem;
+    }
+
+    .count {
+        font-size: 1.2rem;
+    }
+
+    .settings-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .screen-cursor {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hand-gesture-container {
+        padding: 5px;
+    }
+
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .side-panel {
+        max-width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .gesture-info, .finger-count-info {
+        flex: 1;
+        min-width: 140px;
+        min-height: 40px;
+        padding: 0.4rem;
+        display: inline-block;
+        width: calc(50% - 0.25rem);
+    }
+
+    .gesture-info h3, .finger-count-info h3 {
+        font-size: 0.8rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .gesture-info p {
+        font-size: 0.75rem;
+        margin: 0.2rem 0;
+    }
+
+    .hand-count {
+        padding: 0.2rem;
+    }
+
+    .hand-label {
+        font-size: 0.75rem;
+    }
+
+    .count {
+        font-size: 0.9rem;
+    }
+
+    button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        min-width: 80px;
+    }
+
+    .cursor-info {
+        min-height: 40px;
+        padding: 0.4rem;
+        width: 100%;
+    }
+
+    .cursor-info h3 {
+        font-size: 0.8rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .cursor-info p {
+        font-size: 0.75rem;
+        margin: 0.2rem 0;
+    }
+
+    .screen-cursor {
+        width: 12px;
+        height: 12px;
+    }
+
+    .feature-toggles-header {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .toggle-label {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .toggle-group {
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .video-container {
+        max-width: 320px;
+        border-width: 1px;
+    }
+}

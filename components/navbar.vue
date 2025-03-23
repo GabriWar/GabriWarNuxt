@@ -14,13 +14,14 @@
           GAMES</NuxtLink>
       </li>
       <li>
-        <NuxtLink class="txtanim link-color-projects" to="/ia" active-class="link-static-projects link-active glitch">
-          IA</NuxtLink>
+        <NuxtLink class="txtanim link-color-projects" to="/aigesture" active-class="link-static-projects link-active glitch">
+          AIGesture</NuxtLink>
       </li>
       <li>
         <NuxtLink class="txtanim link-color-projects" to="/ascii" active-class="link-static-projects link-active glitch">
           ASCII</NuxtLink>
       </li>
+
     </ul>
   </nav>
 </template>
