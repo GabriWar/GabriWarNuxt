@@ -1,5 +1,5 @@
 <template>
-  <div class="ascii-page">
+  <div class="ascii-page" @contextmenu.prevent>
     <div ref="asciiContainer" class="ascii-container"></div>
     <div class="controls">
       <button @click="start" :class="{ active: isRunning }">Start</button>
@@ -538,100 +538,5 @@ class ASCIIFallingText {
 </script>
 
 <style scoped>
-.ascii-page {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: #000000;
-  color: #ffffff;
-  font-family: monospace;
-}
-
-.ascii-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 80vh;
-}
-
-.controls {
-  position: fixed;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
-}
-
-.ascii-page:hover .controls {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.controls button, .back-button {
-  margin: 5px 10px;
-  padding: 8px 16px;
-  background-color: #444;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  min-width: 100px;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.controls button:hover, .back-button:hover {
-  background-color: #555;
-}
-
-.controls button.active {
-  background-color: #393;
-}
-
-.back-button {
-  text-decoration: none;
-  display: inline-block;
-}
-
-.typing-preview {
-  position: fixed;
-  top: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #0f0;
-  font-family: monospace;
-  font-size: 16px;
-  z-index: 20;
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
-}
-
-pre {
-  font-family: monospace;
-  background-color: transparent;
-  color: #FFF;
-  line-height: 1;
-  overflow: hidden;
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-
-:global(body), :global(html) {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  height: 100vh;
-  width: 100vw;
-}
+@import url(assets/css/ascii.css);
 </style> 

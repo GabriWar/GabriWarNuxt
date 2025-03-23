@@ -555,6 +555,8 @@ class ASCIIFallingText {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  top: 0;
+  left: 0;
 }
 
 pre {
