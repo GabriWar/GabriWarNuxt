@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <header>
@@ -8,37 +7,38 @@
             body {
                 background-color: rgb(9,3,44);
                 color: rgb(96,124,198);
-                font-size: 20px;
+                font-size: 11px;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
             }
             .cell {
-                width: 12px;
-                height: 20px;
+                width: 9px;
+                height: 16px;
                 display: inline-block;
             }
             #text-grid {
                 font-family: monospace;
+                font-weight: bold;
             }
         </style>
 
     </header>
     <body>
-        <input type="range" value="0" min="0" max="120" step="0.001" id="timeInp">
         <div id="text-grid"></div>
 <script>
 
 let str = `
-                /dream Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                /dream Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                /dream Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                /dream Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                /dream At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.
-                /dream Et harum quidem rerum facilis est et expedita distinctio.
-                /dream Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo.
-                /dream Minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-                /dream Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates.
-                /dream Repudiandae sint et molestiae non recusandae.
-                /dream Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis.
-                /dream Voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+                    int k;double sin(),cos();main(){float A=0,B=0,i,j,z[1760];char b[1760];printf("\\x1b[2J");for(;;){
+                    memset(b,32,1760);memset(z,0,7040);for(j=0;6.28>j;j+=0.07){for(i=0;6.28>i;i+=0.02){float sini=sin(i),
+                    cosj=cos(j),sinA=sin(A),sinj=sin(j),cosA=cos(A),cosj2=cosj+2,mess=1/(sini*cosj2*sinA+sinj*cosA+5),
+                    cosi=cos(i),cosB=cos(B),sinB=sin(B),t=sini*cosj2*cosA-sinj*sinA;int x=40+30*mess*(cosi*cosj2*cosB-t*
+                    sinB),y=12+15*mess*(cosi*cosj2*sinB+t*cosB),o=x+80*y,N=8*((sinj*sinA-sini*cosj*cosA)*cosB-sini*cosj*
+                    sinA-sinj*cosA-cosi*cosj*sinB);if(22>y&&y>0&&x>0&&80>x&&mess>z[o]){z[o]=mess;b[o]=".,-~:;=!*#$@"[N>0?
+                    N:0];}}}}printf("\\x1b[d");for(k=0;1761>k;k++)putchar(k%80?b[k]:10);A+=0.04;B+=0.02;}}}
 `;
 
 const sentences = str.split(/[\n\r]/).filter(s => s.length > 0).map(s => s + ' ');
@@ -49,8 +49,8 @@ function getCharAt(x,  y) {
     return sentences[si][ci];
 }
 
-const rows = 30;
-const cols = 100;
+const rows = 40;
+const cols = 120;
 
 const cellMap = [];
 const root = document.querySelector('#text-grid');
@@ -69,18 +69,13 @@ for(let y = 0;y < rows;y ++) {
     }
 }
 
-let animationBegin = null;
+let time = 0;
 function animate() {
-    if(animationBegin == null) animationBegin = new Date();
-    timeInp.value = ((new Date()) - animationBegin) / 1000;
-    console.time('drawText');
+    time += 0.064; // Doubled again from 0.032
     drawText();
-    console.timeEnd('drawText');
     requestAnimationFrame(animate);
 }
 requestAnimationFrame(animate);
-
-timeInp.addEventListener('input', drawText);
 
 function transform(x, y, centerX, centerY, time) {
     const dx = x - centerX;
@@ -89,7 +84,7 @@ function transform(x, y, centerX, centerY, time) {
     const dist = Math.sqrt(dx*dx + dy*dy);
 
     const currAngle = Math.atan2(dy, dx);
-    const newAngle = currAngle - Math.pow(dist, 0.5) * time * 0.1;
+    const newAngle = currAngle - Math.pow(dist, 0.5) * time * 0.4; // Doubled from 0.2
 
     return [
         centerX + Math.cos(newAngle) * dist,
@@ -98,18 +93,27 @@ function transform(x, y, centerX, centerY, time) {
 }
 
 function drawText() {
-    const time = Number(timeInp.value);
+    const centerX = 0.5, centerY = 0.5;
+    const invCols = 1/cols;
+    const invRows = 1/rows;
 
     // Clear the screen.
     for(let y = 0;y < rows;y ++) {
+        const row = cellMap[y];
         for(let x = 0;x < cols;x ++) {
-            cellMap[y][x].innerText = ' ';
+            row[x].innerText = ' ';
         }
     }
 
+    // Pre-calculate some values
+    const sinTime = Math.sin(time);
+    const cosTime = Math.cos(time);
+
     for(let y = 0;y < rows;y ++) {
+        const row = cellMap[y];
+        const yNorm = y * invRows;
         for(let x = 0;x < cols;x ++) {
-            let [nx, ny] = transform(x/cols, y/rows, 0.5, 0.5, time);
+            let [nx, ny] = transform(x * invCols, yNorm, centerX, centerY, time);
             nx = Math.floor(nx*cols);
             ny = Math.floor(ny*rows);
             if(nx < 0 || ny < 0 || ny >= rows || nx >= cols) continue;

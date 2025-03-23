@@ -111,7 +111,7 @@
           <p
             class="resumeedu"
             data-visible="0"
-            data-translate="Atualmente cursando uma graduação em Ciência da Computação, estou dedicado(a) a ampliar meu conhecimento e permanecer na vanguarda da tecnologia. Também falo português (nativo), inglês (fluente) e estou aprendendo alemão."
+            data-translate="Atualmente cursando uma graduação em Ciência da Computação, estou dedicado(a) a ampliar meu conhecimento e permanecer à frente da tecnologia. Também falo português (nativo), inglês (fluente) e estou aprendendo alemão."
           >
             Currently pursuing a degree in Computer Science, I am dedicated to
             expanding my knowledge and staying at the forefront of technology. I
