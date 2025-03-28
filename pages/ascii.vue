@@ -42,7 +42,7 @@ export default {
     initFallingText() {
       const container = this.$refs.asciiContainer
       this.fallingText = new ASCIIFallingText(container, {
-        gravity: 0.7,
+        gravity: 0.9,
         friction: 0.3,
         fps: 60,
         freezeTime: 2000,
@@ -129,7 +129,7 @@ export default {
 class ASCIIFallingText {
   constructor(container, options = {}) {
     this.options = {
-      gravity: options.gravity || 0.7,
+      gravity: options.gravity || 0.9,
       friction: options.friction || 0.4,
       fps: options.fps || 60,
       freezeTime: options.freezeTime || 2000,
@@ -161,12 +161,12 @@ class ASCIIFallingText {
   }
   
   calculateDimensions() {
-    const charWidth = 8
+    const charWidth = 7
     const charHeight = 14
     
     const containerRect = this.container.getBoundingClientRect()
     
-    this.options.width = Math.floor(containerRect.width / charWidth)
+    this.options.width = Math.floor((containerRect.width / charWidth) * 0.9)
     this.options.height = Math.floor(containerRect.height / charHeight)
     
     this.options.width = Math.max(this.options.width, 10)
