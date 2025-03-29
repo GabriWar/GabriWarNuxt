@@ -1,7 +1,11 @@
 <template>
-  <div class="all">
-    <bg />
-    <div class="bttn-translate" @click="translatetext">BR/EN</div>
+  <div class="all" @mousemove="handleMouseMove">
+    <div class="bgcontainer">
+      <bg />
+
+      <div class="bttn-translate" @click="translatetext">BR/EN</div>
+    </div>
+
     <div class="txtcontainer">
       <div class="resumeEN">
         <div class="resume" data-visible="1">
@@ -138,11 +142,11 @@
   </div>
 </template>
 
-<script setup> //choose random from bg and ascii
-import bg from '~/components/bg.vue';
-import ascii from '~/pages/ascii.vue';
+<script setup>
+import genRandom from '~/utils/genrandom.js';
+import animaText from '~/utils/animatext.js';
 import translatetext from '~/utils/translate.js';
-
+import bg from '~/components/bg.vue';
 
 const handleclick = (...cssclasses) => {
   cssclasses.forEach((cssclass) => {
