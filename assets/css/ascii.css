@@ -12,13 +12,18 @@
 
 .controls {
   position: fixed;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
   right: 0;
   z-index: 10;
   text-align: center;
-  padding: 20px 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.controls[v-show="false"] {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .controls button {

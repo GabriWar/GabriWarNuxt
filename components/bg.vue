@@ -3,10 +3,11 @@
     <div class="bg">
       <div class="hover">
         <div class="txtdiv">
-          <p class="txt">{{ randomChars }}</p>
+          <p class="randtxt">{{ randomChars }}</p>
         </div>
       </div>
     </div>
+
     <div
       class="name"
       id="animate"
@@ -38,5 +39,7 @@ const handleMouseMove = (event) => {
 </script>
 
 <style scoped>
+@import url(assets/css/portfolio.css);
+@import url(assets/css/glitchanim.css);
 @import url(assets/css/bg.css);
 </style>

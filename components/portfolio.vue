@@ -1,25 +1,7 @@
 <template>
-  <div class="all" @mousemove="handleMouseMove">
-    <div class="bgcontainer">
-      <div class="bg">
-        <div class="hover">
-          <div class="txtdiv">
-            <p class="randtxt">{{ randomChars }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bttn-translate" @click="translatetext">BR/EN</div>
-
-      <div
-        class="name"
-        id="animate"
-        @mouseover="animaText('animate', 'Gabriel', 'Guerra')"
-      >
-        GabriWar
-      </div>
-    </div>
-
+  <div class="all">
+    <bg />
+    <div class="bttn-translate" @click="translatetext">BR/EN</div>
     <div class="txtcontainer">
       <div class="resumeEN">
         <div class="resume" data-visible="1">
@@ -156,16 +138,11 @@
   </div>
 </template>
 
-<script setup>
-import genRandom from '~/utils/genrandom.js';
-import animaText from '~/utils/animatext.js';
+<script setup> //choose random from bg and ascii
+import bg from '~/components/bg.vue';
+import ascii from '~/pages/ascii.vue';
 import translatetext from '~/utils/translate.js';
-import { ref } from 'vue';
 
-const randomChars = ref('');
-const mouseX = ref(0);
-const mouseY = ref(0);
-randomChars.value = 'GabriWar'.repeat(1050);
 
 const handleclick = (...cssclasses) => {
   cssclasses.forEach((cssclass) => {
@@ -179,13 +156,6 @@ const handleclick = (...cssclasses) => {
       }, 5000);
     }
   });
-};
-const handleMouseMove = (event) => {
-  mouseX.value = event.clientX;
-  mouseY.value = event.clientY;
-  randomChars.value = genRandom(6000);
-  document.documentElement.style.setProperty('--x', `${mouseX.value}px`);
-  document.documentElement.style.setProperty('--y', `${mouseY.value}px`);
 };
 </script>
 

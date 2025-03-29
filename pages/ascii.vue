@@ -1,7 +1,8 @@
+
 <template>
   <div class="ascii-page" @contextmenu.prevent>
     <div ref="asciiContainer" class="ascii-container"></div>
-    <div class="controls">
+    <div class="controls" v-show="showControls">
       <button @click="start" :class="{ active: isRunning }">Start</button>
       <button @click="stop" :class="{ active: !isRunning }">Stop</button>
       <button @click="reset">Reset</button>
@@ -23,7 +24,8 @@ export default {
       isRunning: false,
       rainEnabled: true,
       typedText: '',
-      typingTimeout: null
+      typingTimeout: null,
+      showControls: false
     }
   },
   mounted() {
@@ -42,14 +44,22 @@ export default {
     initFallingText() {
       const container = this.$refs.asciiContainer
       this.fallingText = new ASCIIFallingText(container, {
-        gravity: 0.9,
+        gravity: 0.8,
         friction: 0.3,
-        fps: 60,
+        fps: 120,
         freezeTime: 2000,
         randomizationChance: 0.03
       })
-      
-      this.fallingText.addText('@GabriWar', 1, 0, true)
+      let randomPhrase = '';
+      fetch('@pages/ascii.vue')
+  .then(response => response.text())
+  .then(text => {
+    const phrases = text.split('\n').filter(line => line.trim() !== '');
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    console.log(randomPhrase); // Output a random phrase
+  })
+  .catch(console.error);
+      this.fallingText.addText("@GabriWar", 1, 0, true)
       this.start()
     },
     start() {
@@ -82,6 +92,11 @@ export default {
     },
     handleKeyPress(e) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON') {
+        return
+      }
+      
+      if (e.key === ' ') {
+        this.showControls = !this.showControls
         return
       }
       
@@ -129,7 +144,7 @@ export default {
 class ASCIIFallingText {
   constructor(container, options = {}) {
     this.options = {
-      gravity: options.gravity || 0.9,
+      gravity: options.gravity || 1,
       friction: options.friction || 0.4,
       fps: options.fps || 60,
       freezeTime: options.freezeTime || 2000,
@@ -263,6 +278,7 @@ class ASCIIFallingText {
     this.frozenCells.clear()
     this.velocities.clear()
     this.render()
+    
   }
   
   isFrozen(x, y) {
@@ -445,6 +461,7 @@ class ASCIIFallingText {
       this.isDragging = true
       this.addCharsAt(pos.x, pos.y)
     }
+    
   }
   
   handleMouseMove(e) {
@@ -535,6 +552,7 @@ class ASCIIFallingText {
     }
   }
 }
+
 </script>
 
 <style scoped>
