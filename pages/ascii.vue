@@ -59,7 +59,23 @@ export default {
     console.log(randomPhrase); // Output a random phrase
   })
   .catch(console.error);
-      this.fallingText.addText("@GabriWar", 1, 0, true)
+let banner = `                                                  
+unsigned __int64 sub_7910(char *format, ...)
+{void *v1; // r14 int v2; // eax size_t v3; // r15
+  char v4; // al __int16 v5; // r15
+  char v6; // al unsigned __int64 v7; // r12
+  void (__fastcall *v8)(void *); // rax
+  FILE *v9; // r15
+  gcc_va_list va1; // [rsp+B0h] [rbp-80h] BYREF
+  gcc_va_list va2; // [rsp+D0h] [rbp-60h] BYREF
+  gcc_va_list arg; // [rsp+F0h] [rbp-40h] BYREF
+  unsigned __int64 v14; // [rsp+108h] [rbp-28h]}
+`
+const showcredits = true   
+if (showcredits) {
+this.fallingText.addText(banner, Math.floor(Math.random() * (this.fallingText.options.width - 43 )), Math.floor(Math.random() * (this.fallingText.options.height - 14)), true)
+this.fallingText.addText("@GabriWar", Math.floor(Math.random() * (this.fallingText.options.width - "@GabriWar".length)), 0, true)
+}
       this.start()
     },
     start() {
@@ -552,6 +568,9 @@ class ASCIIFallingText {
     }
   }
 }
+
+
+
 
 </script>
 
