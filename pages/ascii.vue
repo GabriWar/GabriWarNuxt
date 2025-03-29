@@ -50,15 +50,7 @@ export default {
         freezeTime: 2000,
         randomizationChance: 0.03
       })
-      let randomPhrase = '';
-      fetch('@pages/ascii.vue')
-  .then(response => response.text())
-  .then(text => {
-    const phrases = text.split('\n').filter(line => line.trim() !== '');
-    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    console.log(randomPhrase); // Output a random phrase
-  })
-  .catch(console.error);
+
 let banner = `                                                  
 unsigned __int64 sub_7910(char *format, ...)
 {void *v1; // r14 int v2; // eax size_t v3; // r15
@@ -71,12 +63,38 @@ unsigned __int64 sub_7910(char *format, ...)
   gcc_va_list arg; // [rsp+F0h] [rbp-40h] BYREF
   unsigned __int64 v14; // [rsp+108h] [rbp-28h]}
 `
+function scrambleWords(input) {
+    // Split the input by lines to preserve newlines
+    let lines = input.split('\n');
+    
+    // Function to scramble the words in a line
+    function scrambleLine(line) {
+        let words = line.split(' ');
+        // Shuffle the words
+        for (let i = words.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [words[i], words[j]] = [words[j], words[i]]; // Swap words
+        }
+        return words.join(' ');
+    }
+    
+    // Scramble each line's words
+    let scrambledLines = lines.map(scrambleLine);
+    
+    // Join the scrambled lines back with newlines
+    return scrambledLines.join('\n');
+}
+
 const showcredits = true   
 if (showcredits) {
-this.fallingText.addText(banner, Math.floor(Math.random() * (this.fallingText.options.width - 43 )), Math.floor(Math.random() * (this.fallingText.options.height - 14)), true)
 this.fallingText.addText("@GabriWar", Math.floor(Math.random() * (this.fallingText.options.width - "@GabriWar".length)), 0, true)
 }
-      this.start()
+const mathrandom = Math.floor(Math.random() * 100)
+if (mathrandom < 30) {
+  this.fallingText.addText(scrambleWords(banner), Math.floor(Math.random() * (this.fallingText.options.width - 43 )), Math.floor(Math.random() * (this.fallingText.options.height - 14)), true)
+}
+
+this.start()
     },
     start() {
       if (this.fallingText) {
