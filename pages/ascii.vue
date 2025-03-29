@@ -52,16 +52,16 @@ export default {
       })
 
 let banner = `                                                  
-unsigned __int64 sub_7910(char *format, ...)
-{void *v1; // r14 int v2; // eax size_t v3; // r15
-  char v4; // al __int16 v5; // r15
-  char v6; // al unsigned __int64 v7; // r12
-  void (__fastcall *v8)(void *); // rax
-  FILE *v9; // r15
-  gcc_va_list va1; // [rsp+B0h] [rbp-80h] BYREF
-  gcc_va_list va2; // [rsp+D0h] [rbp-60h] BYREF
-  gcc_va_list arg; // [rsp+F0h] [rbp-40h] BYREF
-  unsigned __int64 v14; // [rsp+108h] [rbp-28h]}
+unsigned __int64 sub_7910(char *format, (...)
+{void *v1; r14 int v2; eax size_t v3; r15
+ char v4; al __int16 v5; r15
+ char v6; al unsigned __int64 v7; r12
+ void (__fastcall *v8)(void *); rax
+ FILE *v9; r15
+ gcc_va_list va1; [rsp+B0h] [rbp-80h] BYREF
+ gcc_va_list va2; [rsp+D0h] [rbp-60h] BYREF
+ gcc_va_list arg; [rsp+F0h] [rbp-40h] BYREF
+ unsigned __int64 v14; [rsp+108h] [rbp-28h]}
 `
 function scrambleWords(input) {
     // Split the input by lines to preserve newlines
