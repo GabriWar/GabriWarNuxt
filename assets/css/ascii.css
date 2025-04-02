@@ -80,6 +80,7 @@ pre {
   margin: 0;
   padding: 0;
   user-select: none;
+  text-align: center;
 }
 
 :global(body), :global(html) {
