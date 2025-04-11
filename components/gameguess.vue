@@ -1,6 +1,4 @@
 <template>
-  <title>Guessing Game</title>
-  <div class="bttn-translate" @click="translatetext">BR/EN</div>
   <div class="bg">
     <h1 data-translate="Adivinhe o número">Guess the Number</h1>
     <div class="game">
@@ -97,8 +95,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import translatetext from '~/utils/translate.js';
+
+const props = defineProps({
+  currentLanguage: {
+    type: String,
+    default: 'en'
+  }
+});
+
+const emit = defineEmits(['language-changed']);
+
 const client = useSupabaseClient();
 const targetNumber = Math.floor(Math.random() * 100) + 1;
 const guess = ref('');
@@ -111,6 +119,16 @@ const highScores = ref([]);
 const gameStarted = ref(false);
 const timer = ref(null);
 const milliseconds = ref(0);
+
+// Watch for language changes from parent
+watch(() => props.currentLanguage, (newLang) => {
+  handleTranslation(newLang);
+});
+
+function handleTranslation(lang) {
+  translatetext();
+  // No need to emit back if change came from parent
+}
 
 async function fetchHighScores() {
   const { data, error } = await client
@@ -125,7 +143,13 @@ async function fetchHighScores() {
   }
 }
 
-onMounted(fetchHighScores);
+onMounted(() => {
+  fetchHighScores();
+  // Apply initial language
+  if (props.currentLanguage === 'br') {
+    handleTranslation('br');
+  }
+});
 
 function startGame() {
   gameStarted.value = true;
