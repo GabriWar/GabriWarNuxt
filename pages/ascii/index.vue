@@ -95,6 +95,15 @@ unsigned __int64 sub_7910(char *format, (...)
           0,
           true
         );
+        this.fallingText.addText(
+          "PRESS SPACE TO SHOW MENU!!",
+          Math.floor(
+            Math.random() *
+              (this.fallingText.options.width - "@PRESS SPACE TO SHOW MENU!!".length)
+          ),
+          0,
+          true
+        );
       }
       const mathrandom = Math.floor(Math.random() * 100);
       if (mathrandom < 30) {

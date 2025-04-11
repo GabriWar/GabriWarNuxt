@@ -15,7 +15,7 @@
       </li>
       <li>
         <NuxtLink class="txtanim link-color-projects" to="/AI" active-class="link-static-projects link-active glitch">
-          AIGesture</NuxtLink>
+          AI</NuxtLink>
       </li>
       <li>
         <NuxtLink class="txtanim link-color-projects" to="/ascii" active-class="link-static-projects link-active glitch">
