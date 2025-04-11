@@ -36,4 +36,4 @@ import AIGesture from '~/components/aigesture.vue';
         padding: 0.5rem;
     }
 }
-</style> 
+</style>

@@ -14,7 +14,7 @@
           GAMES</NuxtLink>
       </li>
       <li>
-        <NuxtLink class="txtanim link-color-projects" to="/aigesture" active-class="link-static-projects link-active glitch">
+        <NuxtLink class="txtanim link-color-projects" to="/AI" active-class="link-static-projects link-active glitch">
           AIGesture</NuxtLink>
       </li>
       <li>
@@ -31,7 +31,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const isAsciiPage = computed(() => route.path === '/ascii')
+const isAsciiPage = computed(() => route.path.startsWith('/ascii'))
 </script>
 
 <style scoped>
