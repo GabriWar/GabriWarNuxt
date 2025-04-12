@@ -27,13 +27,11 @@ import AIGesture from '~/components/aigesture.vue';
 @media screen and (max-width: 800px) {
     .aigesture-page {
         height: 100dvh;
-        padding: 1rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     .aigesture-page {
-        padding: 0.5rem;
     }
 }
 </style>
