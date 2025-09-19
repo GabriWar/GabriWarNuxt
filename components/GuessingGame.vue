@@ -107,7 +107,26 @@ const props = defineProps({
 
 const emit = defineEmits(['language-changed']);
 
-const client = useSupabaseClient();
+// Supabase client disabled. Use localStorage fallback for scores.
+// const client = useSupabaseClient();
+
+function getLocalScores() {
+  try {
+    const raw = localStorage.getItem('gw_high_scores');
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    console.error('failed reading local scores', e);
+    return [];
+  }
+}
+
+function setLocalScores(scores) {
+  try {
+    localStorage.setItem('gw_high_scores', JSON.stringify(scores));
+  } catch (e) {
+    console.error('failed saving local scores', e);
+  }
+}
 const targetNumber = Math.floor(Math.random() * 100) + 1;
 const guess = ref('');
 const playerName = ref('');
@@ -131,16 +150,8 @@ function handleTranslation(lang) {
 }
 
 async function fetchHighScores() {
-  const { data, error } = await client
-    .from('scores')
-    .select('*')
-    .order('scores', { ascending: true })
-    .limit(30);
-  if (error) {
-    console.error(error);
-  } else {
-    highScores.value = data;
-  }
+  // Fallback to localStorage when Supabase is disabled
+  highScores.value = getLocalScores().slice(0, 30).sort((a, b) => a.scores - b.scores);
 }
 
 onMounted(() => {
@@ -192,21 +203,23 @@ async function sendScore() {
     return;
   }
 
-  const { error } = await client.from('scores').insert([
-    {
-      names: playerName.value,
-      scores: milliseconds.value * attempts.value,
-      time: milliseconds.value,
-      tentativas: attempts.value,
-    },
-  ]);
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('score enviada');
-    fetchHighScores();
-    location.reload();
-  }
+  // Save score to localStorage fallback
+  const newScore = {
+    names: playerName.value,
+    scores: milliseconds.value * attempts.value,
+    time: milliseconds.value,
+    tentativas: attempts.value,
+  };
+
+  const scores = getLocalScores();
+  scores.push(newScore);
+  // keep only top 100 locally
+  scores.sort((a, b) => a.scores - b.scores);
+  setLocalScores(scores.slice(0, 100));
+
+  console.log('score saved locally');
+  fetchHighScores();
+  // no full reload needed
 }
 </script>
 

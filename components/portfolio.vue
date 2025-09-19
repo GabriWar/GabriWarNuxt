@@ -1,7 +1,7 @@
 <template>
   <div class="all" @mousemove="handleMouseMove">
     <div class="bgcontainer">
-      <bg />
+       <BgGlitch />
 
       <div class="bttn-translate" @click="translatetext">BR/EN</div>
     </div>
@@ -146,7 +146,7 @@
 import genRandom from '~/utils/genrandom.js';
 import animaText from '~/utils/animatext.js';
 import translatetext from '~/utils/translate.js';
-import bg from '~/components/bg.vue';
+import BgGlitch from '~/components/BgGlitch.vue';
 
 const handleclick = (...cssclasses) => {
   cssclasses.forEach((cssclass) => {
